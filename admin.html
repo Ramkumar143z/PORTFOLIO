@@ -1,71 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" data-mode="dark" data-palette="amethyst">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel — B.Ramkumar Portfolio CMS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
-      /* Dark defaults */
       --bg: #030014;
       --bg2: #0a0520;
-      --surface: rgba(255,255,255,0.04);
-      --surface-hov: rgba(255,255,255,0.08);
-      --bdr: rgba(255,255,255,0.08);
+      --surface: rgba(255, 255, 255, 0.04);
+      --surface-hov: rgba(255, 255, 255, 0.08);
+      --bdr: rgba(255, 255, 255, 0.08);
       --text: #e2e8f0;
-      --text-dim: rgba(226,232,240,0.55);
+      --text-dim: rgba(226, 232, 240, 0.55);
       --accent: #7A3F91;
       --accent2: #C59DD9;
-      --inp-bg: rgba(255,255,255,0.04);
-      --inp-bdr: rgba(255,255,255,0.12);
+      --inp-bg: rgba(255, 255, 255, 0.04);
+      --inp-bdr: rgba(255, 255, 255, 0.12);
       --success: #22c55e;
       --warn: #f59e0b;
       --radius: 16px;
+      --token-shadow: rgba(122, 63, 145, .30);
     }
 
-    /* ── Palette vars ── */
-    /* Royal Amethyst */
     [data-palette="amethyst"] {
-      --accent:       #7A3F91;
-      --accent2:      #C59DD9;
+      --accent: #7A3F91;
+      --accent2: #C59DD9;
       --accent-hover: #61307A;
-      --btn-text:     #FFFFFF;
-      --token-shadow: rgba(122,63,145,.30);
+      --btn-text: #FFFFFF;
+      --token-shadow: rgba(122, 63, 145, .30);
     }
-    /* Imperial Topaz */
+
     [data-palette="topaz"] {
-      --accent:       #C48A00;
-      --accent2:      #FFD77A;
+      --accent: #C48A00;
+      --accent2: #FFD77A;
       --accent-hover: #A67200;
-      --btn-text:     #FFFFFF;
-      --token-shadow: rgba(196,138,0,.30);
+      --btn-text: #FFFFFF;
+      --token-shadow: rgba(196, 138, 0, .30);
     }
-    /* Platinum Mist */
+
     [data-palette="platinum"] {
-      --accent:       #2B2E33;
-      --accent2:      #7B7F85;
+      --accent: #2B2E33;
+      --accent2: #7B7F85;
       --accent-hover: #1A1D22;
-      --btn-text:     #FFFFFF;
-      --token-shadow: rgba(43,46,51,.22);
+      --btn-text: #FFFFFF;
+      --token-shadow: rgba(43, 46, 51, .22);
     }
 
     [data-mode="light"] {
       --bg: #f0f0f5;
       --bg2: #e4e4ee;
-      --surface: rgba(255,255,255,0.7);
-      --surface-hov: rgba(255,255,255,0.9);
-      --bdr: rgba(0,0,0,0.1);
+      --surface: rgba(255, 255, 255, 0.7);
+      --surface-hov: rgba(255, 255, 255, 0.9);
+      --bdr: rgba(0, 0, 0, 0.1);
       --text: #1a1a2e;
-      --text-dim: rgba(26,26,46,0.55);
-      --inp-bg: rgba(0,0,0,0.04);
-      --inp-bdr: rgba(0,0,0,0.15);
+      --text-dim: rgba(26, 26, 46, 0.55);
+      --inp-bg: rgba(0, 0, 0, 0.04);
+      --inp-bdr: rgba(0, 0, 0, 0.15);
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Sora', sans-serif;
       background: var(--bg);
@@ -80,9 +90,15 @@
       grid-template-columns: 260px 1fr;
       min-height: 100vh;
     }
+
     @media (max-width: 860px) {
-      .admin-shell { grid-template-columns: 1fr; }
-      .sidebar { display: none; }
+      .admin-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
     }
 
     /* ── SIDEBAR ── */
@@ -98,6 +114,7 @@
       flex-direction: column;
       gap: 2rem;
     }
+
     .sb-logo {
       font-size: 1.2rem;
       font-weight: 800;
@@ -106,6 +123,7 @@
       -webkit-text-fill-color: transparent;
       letter-spacing: -0.02em;
     }
+
     .sb-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.58rem;
@@ -115,6 +133,7 @@
       margin-bottom: 0.6rem;
       margin-top: 0.5rem;
     }
+
     .sb-link {
       display: flex;
       align-items: center;
@@ -128,12 +147,24 @@
       transition: all 0.25s;
       cursor: pointer;
     }
-    .sb-link:hover, .sb-link.active {
+
+    .sb-link:hover,
+    .sb-link.active {
       background: var(--surface);
       color: var(--text);
     }
-    .sb-link i { width: 18px; text-align: center; color: var(--accent); }
-    .sb-divider { height: 1px; background: var(--bdr); }
+
+    .sb-link i {
+      width: 18px;
+      text-align: center;
+      color: var(--accent);
+    }
+
+    .sb-divider {
+      height: 1px;
+      background: var(--bdr);
+    }
+
     .sb-preview-btn {
       display: flex;
       align-items: center;
@@ -150,14 +181,23 @@
       transition: all 0.3s;
       border: none;
     }
-    .sb-preview-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .sb-preview-btn:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
 
     /* ── MAIN ── */
     .main-content {
       padding: 2.5rem 3rem;
       max-width: 1100px;
     }
-    @media (max-width: 860px) { .main-content { padding: 1.5rem; } }
+
+    @media (max-width: 860px) {
+      .main-content {
+        padding: 1.5rem;
+      }
+    }
 
     .page-header {
       display: flex;
@@ -167,12 +207,18 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
+
     .page-title {
       font-size: clamp(1.4rem, 3vw, 2rem);
       font-weight: 800;
       letter-spacing: -0.02em;
     }
-    .page-sub { color: var(--text-dim); font-size: 0.82rem; margin-top: 4px; }
+
+    .page-sub {
+      color: var(--text-dim);
+      font-size: 0.82rem;
+      margin-top: 4px;
+    }
 
     /* ── CARDS ── */
     .card {
@@ -182,7 +228,11 @@
       padding: 1.8rem;
       transition: all 0.3s;
     }
-    .card:hover { border-color: var(--accent); }
+
+    .card:hover {
+      border-color: var(--accent);
+    }
+
     .card-title {
       font-size: 0.95rem;
       font-weight: 700;
@@ -191,7 +241,10 @@
       align-items: center;
       gap: 10px;
     }
-    .card-title i { color: var(--accent); }
+
+    .card-title i {
+      color: var(--accent);
+    }
 
     /* ── SECTIONS LAYOUT ── */
     .sections-grid {
@@ -211,6 +264,7 @@
       width: fit-content;
       border: 1px solid var(--bdr);
     }
+
     .mode-tab {
       padding: 0.55rem 1.4rem;
       border-radius: 9px;
@@ -225,12 +279,17 @@
       align-items: center;
       gap: 7px;
     }
+
     .mode-tab.active {
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: #fff;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
     }
-    .mode-tab:not(.active):hover { background: var(--surface-hov); color: var(--text); }
+
+    .mode-tab:not(.active):hover {
+      background: var(--surface-hov);
+      color: var(--text);
+    }
 
     /* ── PALETTE SELECTOR ── */
     .pal-grid {
@@ -239,6 +298,7 @@
       gap: 0.75rem;
       margin-top: 0.8rem;
     }
+
     .pal-card {
       padding: 1.2rem 1rem;
       border-radius: 14px;
@@ -247,17 +307,117 @@
       transition: all 0.3s;
       text-align: center;
     }
-    .pal-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .pal-card.active { border-color: var(--accent); background: var(--surface-hov); box-shadow: 0 0 0 3px var(--token-shadow, rgba(0,0,0,.08)); }
+
+    .pal-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .pal-card.active {
+      border-color: var(--accent);
+      background: var(--surface-hov);
+      box-shadow: 0 0 0 3px var(--token-shadow, rgba(0, 0, 0, .08));
+    }
+
     .pal-swatch {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       margin: 0 auto 0.7rem;
-      border: 2px solid rgba(0,0,0,0.1);
+      border: 2px solid rgba(0, 0, 0, 0.1);
     }
-    .pal-card-name { font-size: 0.72rem; font-weight: 700; color: var(--text); }
-    .pal-card-sub { font-size: 0.62rem; color: var(--text-dim); margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+
+    .pal-card-name {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .pal-card-sub {
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      margin-top: 2px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── CONTEXT BANNER ── */
+    .context-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.9rem 1.4rem;
+      border-radius: 12px;
+      margin-bottom: 1.8rem;
+      border: 1px solid var(--bdr);
+      background: var(--surface);
+      animation: bannerIn 0.3s ease;
+    }
+
+    @keyframes bannerIn {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .ctx-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .ctx-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .ctx-sub {
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      margin-top: 2px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── UPLOAD GRID ── */
+    .upload-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    /* ── UPLOAD SLOT ── */
+    .upload-slot {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slot-label {
+      font-size: 0.66rem;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .slot-sub {
+      font-size: 0.58rem;
+      color: var(--accent);
+      display: block;
+      margin-top: 1px;
+    }
 
     /* ── IMG UPLOAD ── */
     .upload-zone {
@@ -270,11 +430,26 @@
       position: relative;
       overflow: hidden;
     }
-    .upload-zone:hover { border-color: var(--accent); background: var(--surface-hov); }
-    .upload-zone.has-img { border-style: solid; border-color: var(--success); }
-    .upload-zone input[type="file"] {
-      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+
+    .upload-zone:hover {
+      border-color: var(--accent);
+      background: var(--surface-hov);
     }
+
+    .upload-zone.has-img {
+      border-style: solid;
+      border-color: var(--success);
+    }
+
+    .upload-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
     .uz-preview {
       width: 100%;
       height: 110px;
@@ -283,17 +458,37 @@
       display: none;
       margin-bottom: 8px;
     }
-    .uz-preview.show { display: block; }
-    .uz-icon { font-size: 1.6rem; color: var(--text-dim); margin-bottom: 6px; }
-    .uz-label { font-size: 0.72rem; color: var(--text-dim); }
-    .uz-name { font-size: 0.7rem; font-weight: 600; color: var(--accent); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+
+    .uz-preview.show {
+      display: block;
+    }
+
+    .uz-icon {
+      font-size: 1.6rem;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+
+    .uz-label {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    .uz-name {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
     .uz-clear {
       position: absolute;
       top: 8px;
       right: 8px;
       width: 22px;
       height: 22px;
-      background: rgba(239,68,68,0.8);
+      background: rgba(239, 68, 68, 0.8);
       border: none;
       border-radius: 50%;
       color: #fff;
@@ -305,12 +500,21 @@
       z-index: 10;
       transition: background 0.2s;
     }
-    .uz-clear:hover { background: #ef4444; }
-    .upload-zone.has-img .uz-clear { display: flex; }
-    .upload-zone.has-img .uz-icon,
-    .upload-zone.has-img .uz-label { display: none; }
 
-    /* ── SECTION LABEL ── */
+    .uz-clear:hover {
+      background: #ef4444;
+    }
+
+    .upload-zone.has-img .uz-clear {
+      display: flex;
+    }
+
+    .upload-zone.has-img .uz-icon,
+    .upload-zone.has-img .uz-label {
+      display: none;
+    }
+
+    /* ── SECTION ANCHOR ── */
     .section-anchor {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.58rem;
@@ -319,6 +523,30 @@
       color: var(--text-dim);
       margin-bottom: 0.8rem;
       display: block;
+    }
+
+    /* ── SLOT SECTION HEADING ── */
+    .slot-section-head {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 0.4rem 0;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--bdr);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slot-section-head::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
     }
 
     /* ── TOAST ── */
@@ -334,12 +562,16 @@
       font-size: 0.82rem;
       font-weight: 600;
       opacity: 0;
-      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 9999;
       white-space: nowrap;
       pointer-events: none;
     }
-    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
     /* ── STATUS BAR ── */
     .status-bar {
@@ -354,17 +586,31 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
+
     .status-item {
       display: flex;
       align-items: center;
       gap: 8px;
       font-size: 0.78rem;
     }
-    .status-dot { width: 7px; height: 7px; border-radius: 50%; }
-    .status-dot.green { background: var(--success); box-shadow: 0 0 8px var(--success); }
-    .status-dot.yellow { background: var(--warn); box-shadow: 0 0 8px var(--warn); }
 
-    /* ── INLINE BADGE ── */
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .status-dot.green {
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success);
+    }
+
+    .status-dot.yellow {
+      background: var(--warn);
+      box-shadow: 0 0 8px var(--warn);
+    }
+
+    /* ── BADGE ── */
     .badge {
       display: inline-block;
       padding: 2px 8px;
@@ -374,8 +620,16 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
-    .badge-dark { background: rgba(0,0,0,0.3); color: #a0aec0; }
-    .badge-light { background: rgba(255,255,255,0.2); color: #fff; }
+
+    .badge-dark {
+      background: rgba(0, 0, 0, 0.3);
+      color: #a0aec0;
+    }
+
+    .badge-light {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
 
     /* ── SAVE BUTTON ── */
     .save-btn {
@@ -391,552 +645,740 @@
       cursor: pointer;
       border: none;
       transition: all 0.3s;
-      box-shadow: 0 4px 18px var(--token-shadow, rgba(0,0,0,.18));
+      box-shadow: 0 4px 18px var(--token-shadow, rgba(0, 0, 0, .18));
     }
-    .save-btn:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
-    .save-btn:active { transform: translateY(0); }
+
+    .save-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .save-btn:active {
+      transform: translateY(0);
+    }
 
     /* ── RESET BTN ── */
     .reset-btn {
-      display: flex; align-items: center; gap: 7px;
-      padding: 0.6rem 1.2rem; border-radius: 10px;
-      background: transparent; color: var(--text-dim);
-      font-size: 0.78rem; font-weight: 600;
-      border: 1px solid var(--bdr); cursor: pointer; transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 1px solid var(--bdr);
+      cursor: pointer;
+      transition: all 0.25s;
     }
-    .reset-btn:hover { border-color: #ef4444; color: #ef4444; }
+
+    .reset-btn:hover {
+      border-color: #ef4444;
+      color: #ef4444;
+    }
 
     /* ── PALETTE HIDDEN when dark ── */
-    .palette-section { transition: opacity 0.4s, transform 0.4s; }
-    .palette-section.hidden { opacity: 0; pointer-events: none; transform: translateY(10px); height: 0; overflow: hidden; margin: 0; padding: 0; }
+    .palette-section {
+      transition: opacity 0.4s, transform 0.4s;
+    }
+
+    .palette-section.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
 
     /* ── Divider ── */
-    .divider { height: 1px; background: var(--bdr); margin: 2rem 0; }
+    .divider {
+      height: 1px;
+      background: var(--bdr);
+      margin: 2rem 0;
+    }
 
-    /* ── Grid 2col ── */
-    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
-    @media (max-width: 700px) { .g2, .g3 { grid-template-columns: 1fr; } }
+    /* ── Render slot fade-in ── */
+    .slot-render-target {
+      animation: slotIn 0.3s ease;
+    }
+
+    @keyframes slotIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
+
 <body>
+  <div class="admin-shell">
 
-<div class="admin-shell">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div>
-      <div class="sb-logo">Portfolio CMS</div>
-      <div style="font-size:0.68rem; color: var(--text-dim); margin-top:4px; font-family: 'JetBrains Mono', monospace;">Admin Panel v1.0</div>
-    </div>
-
-    <div>
-      <div class="sb-label">Navigation</div>
-      <a class="sb-link active" href="#mode-section"><i class="fas fa-moon"></i> Mode & Theme</a>
-      <a class="sb-link" href="#images-section"><i class="fas fa-image"></i> Images</a>
-      <a class="sb-link" href="#preview-section"><i class="fas fa-eye"></i> Live Preview</a>
-    </div>
-
-    <div class="sb-divider"></div>
-
-    <div>
-      <div class="sb-label">Actions</div>
-      <a class="sb-link" onclick="saveAll()"><i class="fas fa-save"></i> Save All Changes</a>
-      <a class="sb-link" onclick="resetAll()"><i class="fas fa-trash-alt" style="color:#ef4444"></i> Reset Everything</a>
-    </div>
-
-    <div style="margin-top: auto;">
-      <a href="index.html" target="_blank" class="sb-preview-btn">
-        <i class="fas fa-external-link-alt"></i> Open Portfolio
-      </a>
-    </div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main-content">
-
-    <!-- Page Header -->
-    <div class="page-header">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
       <div>
-        <h1 class="page-title">Admin Panel</h1>
-        <p class="page-sub">Control mode, palette, and per-section images for B.Ramkumar's portfolio.</p>
+        <div class="sb-logo">Portfolio CMS</div>
+        <div style="font-size:0.68rem; color:var(--text-dim); margin-top:4px; font-family:'JetBrains Mono',monospace;">
+          Admin Panel v2.0</div>
       </div>
-      <button class="save-btn" onclick="saveAll()">
-        <i class="fas fa-save"></i> Save & Apply
-      </button>
-    </div>
+      <div>
+        <div class="sb-label">Navigation</div>
+        <a class="sb-link active" href="#mode-section"><i class="fas fa-adjust"></i> Mode & Theme</a>
+        <a class="sb-link" href="#images-section"><i class="fas fa-image"></i> Images</a>
+        <a class="sb-link" href="#preview-section"><i class="fas fa-eye"></i> State Preview</a>
+      </div>
+      <div class="sb-divider"></div>
+      <div>
+        <div class="sb-label">Actions</div>
+        <a class="sb-link" onclick="saveAll()"><i class="fas fa-save"></i> Save All Changes</a>
+        <a class="sb-link" onclick="resetAll()"><i class="fas fa-trash-alt" style="color:#ef4444"></i> Reset
+          Everything</a>
+      </div>
+      <div style="margin-top:auto;">
+        <a href="index.html" target="_blank" class="sb-preview-btn">
+          <i class="fas fa-external-link-alt"></i> Open Portfolio
+        </a>
+      </div>
+    </aside>
 
-    <!-- Status Bar -->
-    <div class="status-bar">
-      <div class="status-item">
-        <div class="status-dot green" id="storageIndicator"></div>
-        <span id="storageStatus" style="color: var(--text-dim);">Checking storage…</span>
-      </div>
-      <div class="status-item">
-        <span style="color: var(--text-dim); font-size:0.72rem;">Current Mode:</span>
-        <strong id="currentModeLabel" style="font-size:0.78rem;">—</strong>
-        <span style="color: var(--text-dim); font-size:0.72rem; margin-left:8px;">Palette:</span>
-        <strong id="currentPalLabel" style="font-size:0.78rem;">—</strong>
-      </div>
-    </div>
+    <!-- MAIN -->
+    <main class="main-content">
 
-    <!-- ─── MODE & PALETTE SECTION ─────────────────────── -->
-    <section id="mode-section">
-      <span class="section-anchor">// Step 1</span>
-      <div class="card" style="margin-bottom: 1.5rem;">
-        <div class="card-title"><i class="fas fa-adjust"></i> Display Mode</div>
-        <p style="font-size:0.8rem; color:var(--text-dim); margin-bottom:1.2rem;">Choose between dark (default) or light mode. Light mode unlocks the palette selector below.</p>
-        <div class="mode-tabs">
-          <button class="mode-tab active" id="tab-dark" onclick="selectMode('dark')">
-            <i class="fas fa-moon"></i> Dark Mode
-          </button>
-          <button class="mode-tab" id="tab-light" onclick="selectMode('light')">
-            <i class="fas fa-sun"></i> Light Mode
-          </button>
+      <!-- Page Header -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Admin Panel</h1>
+          <p class="page-sub">Mode-isolated CMS — only active context uploads are visible.</p>
+        </div>
+        <button class="save-btn" onclick="saveAll()">
+          <i class="fas fa-save"></i> Save & Apply
+        </button>
+      </div>
+
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <div class="status-item">
+          <div class="status-dot green" id="storageIndicator"></div>
+          <span id="storageStatus" style="color:var(--text-dim);">Checking storage…</span>
+        </div>
+        <div class="status-item">
+          <span style="color:var(--text-dim);font-size:0.72rem;">Active Context:</span>
+          <strong id="currentContextLabel" style="font-size:0.78rem;">—</strong>
         </div>
       </div>
 
-      <!-- Palette (Light only) -->
-      <div class="card palette-section hidden" id="paletteSection" style="margin-bottom: 1.5rem;">
-        <div class="card-title"><i class="fas fa-palette"></i> Light Mode Palette</div>
-        <p style="font-size:0.8rem; color:var(--text-dim); margin-bottom:0.5rem;">Pick a color palette for light mode. This only affects light mode display.</p>
-        <div class="pal-grid">
-          <div class="pal-card active" data-pal="amethyst" onclick="selectPalette('amethyst')">
-            <div class="pal-swatch" style="background: linear-gradient(135deg,#C59DD9,#7A3F91);"></div>
-            <div class="pal-card-name">Royal Amethyst</div>
-            <div class="pal-card-sub">#7A3F91 · #C59DD9</div>
-          </div>
-          <div class="pal-card" data-pal="topaz" onclick="selectPalette('topaz')">
-            <div class="pal-swatch" style="background: linear-gradient(135deg,#FFD77A,#E6A520);"></div>
-            <div class="pal-card-name">Imperial Topaz</div>
-            <div class="pal-card-sub">#E6A520 · #FFD77A</div>
-          </div>
-          <div class="pal-card" data-pal="platinum" onclick="selectPalette('platinum')">
-            <div class="pal-swatch" style="background: linear-gradient(135deg,#C1C4C8,#7B7F85);"></div>
-            <div class="pal-card-name">Platinum Mist</div>
-            <div class="pal-card-sub">#7B7F85 · #C1C4C8</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- ─── IMAGES SECTION ─────────────────────────────── -->
-    <section id="images-section">
-      <span class="section-anchor">// Step 2 — Image Slots</span>
-      <p style="font-size:0.8rem; color:var(--text-dim); margin-bottom:1.5rem;">
-        Upload images for each section. In dark mode, images are shared globally. In light mode, you can upload per-palette images for a cohesive look.
-      </p>
-
-      <!-- Shared/Dark hero -->
-      <div class="card" style="margin-bottom: 1.5rem;">
-        <div class="card-title"><i class="fas fa-home"></i> Hero Background</div>
-        <p style="font-size:0.78rem; color:var(--text-dim); margin-bottom:1rem;">
-          Full-bleed hero section background image. <span class="badge badge-dark">Shared</span>
-        </p>
-        <div class="g2">
-          <div>
-            <div style="font-size:0.7rem; color:var(--text-dim); margin-bottom:6px; font-family:'JetBrains Mono',monospace;">DARK MODE</div>
-            <div class="upload-zone" id="zone-dark-hero">
-              <input type="file" accept="image/*" onchange="handleUpload(this,'dark','hero')">
-              <button class="uz-clear" onclick="clearSlot(event,'dark','hero')"><i class="fas fa-times"></i></button>
-              <img class="uz-preview" id="prev-dark-hero" alt="">
-              <div class="uz-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-              <div class="uz-label">Click to upload hero bg</div>
-              <div class="uz-name" id="name-dark-hero"></div>
-            </div>
-          </div>
-          <div id="light-hero-wrap">
-            <div style="font-size:0.7rem; color:var(--text-dim); margin-bottom:6px; font-family:'JetBrains Mono',monospace;" id="light-hero-lbl">LIGHT MODE (<span id="lhl-pal">Amethyst</span>)</div>
-            <div class="upload-zone" id="zone-light-hero">
-              <input type="file" accept="image/*" onchange="handleUpload(this,'light','hero')">
-              <button class="uz-clear" onclick="clearSlot(event,'light','hero')"><i class="fas fa-times"></i></button>
-              <img class="uz-preview" id="prev-light-hero" alt="">
-              <div class="uz-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-              <div class="uz-label">Click to upload hero bg</div>
-              <div class="uz-name" id="name-light-hero"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- About image -->
-      <div class="card" style="margin-bottom: 1.5rem;">
-        <div class="card-title"><i class="fas fa-user-circle"></i> About Section — Avatar / Visual</div>
-        <p style="font-size:0.78rem; color:var(--text-dim); margin-bottom:1rem;">The 3D card visual in the About section.</p>
-        <div class="g2">
-          <div>
-            <div style="font-size:0.7rem; color:var(--text-dim); margin-bottom:6px; font-family:'JetBrains Mono',monospace;">DARK MODE</div>
-            <div class="upload-zone" id="zone-dark-about">
-              <input type="file" accept="image/*" onchange="handleUpload(this,'dark','about')">
-              <button class="uz-clear" onclick="clearSlot(event,'dark','about')"><i class="fas fa-times"></i></button>
-              <img class="uz-preview" id="prev-dark-about" alt="">
-              <div class="uz-icon"><i class="fas fa-user-astronaut"></i></div>
-              <div class="uz-label">Upload about visual</div>
-              <div class="uz-name" id="name-dark-about"></div>
-            </div>
-          </div>
-          <div>
-            <div style="font-size:0.7rem; color:var(--text-dim); margin-bottom:6px; font-family:'JetBrains Mono',monospace;">LIGHT MODE (<span id="lal-pal">Amethyst</span>)</div>
-            <div class="upload-zone" id="zone-light-about">
-              <input type="file" accept="image/*" onchange="handleUpload(this,'light','about')">
-              <button class="uz-clear" onclick="clearSlot(event,'light','about')"><i class="fas fa-times"></i></button>
-              <img class="uz-preview" id="prev-light-about" alt="">
-              <div class="uz-icon"><i class="fas fa-user-astronaut"></i></div>
-              <div class="uz-label">Upload about visual</div>
-              <div class="uz-name" id="name-light-about"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project Thumbnails -->
-      <div class="card" style="margin-bottom: 1.5rem;">
-        <div class="card-title"><i class="fas fa-th-large"></i> Project Thumbnails</div>
-        <p style="font-size:0.78rem; color:var(--text-dim); margin-bottom:1rem;">Upload thumbnail images for each project card. They overlay the gradient background.</p>
-
-        <!-- Toggle dark/light for projects -->
-        <div style="display:flex; gap:0.5rem; margin-bottom:1.2rem;">
-          <button class="mode-tab active" id="proj-tab-dark" onclick="setProjView('dark')" style="font-size:0.72rem; padding:5px 12px;">
-            <i class="fas fa-moon"></i> Dark
-          </button>
-          <button class="mode-tab" id="proj-tab-light" onclick="setProjView('light')" style="font-size:0.72rem; padding:5px 12px;">
-            <i class="fas fa-sun"></i> Light
-          </button>
-        </div>
-
-        <div class="g3" id="proj-slots-dark">
-          <!-- 6 project slots for dark -->
-        </div>
-        <div class="g3" id="proj-slots-light" style="display:none">
-          <!-- 6 project slots for light -->
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- ─── PREVIEW SECTION ────────────────────────────── -->
-    <section id="preview-section">
-      <span class="section-anchor">// Step 3 — Apply</span>
-      <div class="card">
-        <div class="card-title"><i class="fas fa-eye"></i> Preview & Apply</div>
-        <p style="font-size:0.8rem; color:var(--text-dim); margin-bottom:1.5rem;">
-          Once satisfied, save all changes. The portfolio will reflect your settings on next load.
-        </p>
-        <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
-          <button class="save-btn" onclick="saveAll()">
-            <i class="fas fa-save"></i> Save All Changes
-          </button>
-          <a href="index.html" target="_blank" style="text-decoration:none;">
-            <button class="save-btn" style="background: var(--surface-hov); color: var(--text); box-shadow:none; border: 1px solid var(--bdr);">
-              <i class="fas fa-external-link-alt"></i> Open Portfolio
+      <!-- ─── STEP 1: MODE ─────────────────────────────────── -->
+      <section id="mode-section">
+        <span class="section-anchor">// Step 1 — Select Mode</span>
+        <div class="card" style="margin-bottom:1.5rem;">
+          <div class="card-title"><i class="fas fa-adjust"></i> Display Mode</div>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:1.2rem;">
+            Selecting a mode instantly switches the upload panel below to show only that mode's slots.
+          </p>
+          <div class="mode-tabs">
+            <button class="mode-tab" id="tab-dark" onclick="selectMode('dark')">
+              <i class="fas fa-moon"></i> Dark Mode
             </button>
-          </a>
-          <button class="reset-btn" onclick="resetAll()">
-            <i class="fas fa-undo"></i> Reset All
-          </button>
+            <button class="mode-tab" id="tab-light" onclick="selectMode('light')">
+              <i class="fas fa-sun"></i> Light Mode
+            </button>
+          </div>
         </div>
 
-        <!-- Current state display -->
-        <div style="margin-top:1.5rem; padding:1rem; background:var(--inp-bg); border-radius:10px; border:1px solid var(--inp-bdr);">
-          <div style="font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--text-dim); margin-bottom:0.5rem;">CURRENT localStorage STATE</div>
-          <pre id="statePreview" style="font-family:'JetBrains Mono',monospace; font-size:0.62rem; color:var(--text-dim); overflow-x:auto; white-space:pre-wrap; word-break:break-all;"></pre>
+        <!-- Palette (Light only) -->
+        <div class="card palette-section hidden" id="paletteSection" style="margin-bottom:1.5rem;">
+          <div class="card-title"><i class="fas fa-palette"></i> Light Mode Palette</div>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:0.5rem;">
+            Selecting a palette loads only that palette's upload slots below. Uploads are fully isolated per palette.
+          </p>
+          <div class="pal-grid">
+            <div class="pal-card" data-pal="amethyst" onclick="selectPalette('amethyst')">
+              <div class="pal-swatch" style="background:linear-gradient(135deg,#C59DD9,#7A3F91);"></div>
+              <div class="pal-card-name">Royal Amethyst</div>
+              <div class="pal-card-sub">#7A3F91 · #C59DD9</div>
+            </div>
+            <div class="pal-card" data-pal="topaz" onclick="selectPalette('topaz')">
+              <div class="pal-swatch" style="background:linear-gradient(135deg,#FFD77A,#E6A520);"></div>
+              <div class="pal-card-name">Imperial Topaz</div>
+              <div class="pal-card-sub">#E6A520 · #FFD77A</div>
+            </div>
+            <div class="pal-card" data-pal="platinum" onclick="selectPalette('platinum')">
+              <div class="pal-swatch" style="background:linear-gradient(135deg,#C1C4C8,#7B7F85);"></div>
+              <div class="pal-card-name">Platinum Mist</div>
+              <div class="pal-card-sub">#7B7F85 · #C1C4C8</div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </main>
-</div>
+      <div class="divider"></div>
 
-<!-- TOAST -->
-<div id="toast"></div>
+      <!-- ─── STEP 2: IMAGES — DYNAMIC RENDER TARGET ────────── -->
+      <section id="images-section">
+        <span class="section-anchor">// Step 2 — Upload Images</span>
 
-<script>
-// ── State ──────────────────────────────────────────────
-const KEY_MODE = 'portfolio_mode';
-const KEY_PAL  = 'portfolio_palette';
-const KEY_IMGS = 'portfolio_images';
+        <!-- Context banner — updates dynamically -->
+        <div class="context-banner" id="contextBanner">
+          <div class="ctx-icon" id="ctxIcon"><i class="fas fa-moon"></i></div>
+          <div>
+            <div class="ctx-label" id="ctxLabel">Dark Mode</div>
+            <div class="ctx-sub" id="ctxSub">Uploading to: dark namespace</div>
+          </div>
+        </div>
 
-let state = {
-  mode: 'dark',
-  palette: 'amethyst',
-  images: {
-    dark: { hero: '', about: '', proj1:'', proj2:'', proj3:'', proj4:'', proj5:'', proj6:'' },
-    light: {
-      amethyst: { hero:'', about:'', proj1:'', proj2:'', proj3:'', proj4:'', proj5:'', proj6:'' },
-      topaz:    { hero:'', about:'', proj1:'', proj2:'', proj3:'', proj4:'', proj5:'', proj6:'' },
-      platinum: { hero:'', about:'', proj1:'', proj2:'', proj3:'', proj4:'', proj5:'', proj6:'' }
+        <!-- THE SINGLE RENDER TARGET — only active slots live here -->
+        <div id="slotRenderTarget" class="slot-render-target"></div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- ─── STEP 3: APPLY ──────────────────────────────────── -->
+      <section id="preview-section">
+        <span class="section-anchor">// Step 3 — Apply</span>
+        <div class="card">
+          <div class="card-title"><i class="fas fa-eye"></i> Preview & Apply</div>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:1.5rem;">
+            Once satisfied, save all changes. The portfolio reflects your settings on next load.
+          </p>
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <button class="save-btn" onclick="saveAll()">
+              <i class="fas fa-save"></i> Save All Changes
+            </button>
+            <a href="index.html" target="_blank" style="text-decoration:none;">
+              <button class="save-btn"
+                style="background:var(--surface-hov);color:var(--text);box-shadow:none;border:1px solid var(--bdr);">
+                <i class="fas fa-external-link-alt"></i> Open Portfolio
+              </button>
+            </a>
+            <button class="reset-btn" onclick="resetAll()">
+              <i class="fas fa-undo"></i> Reset All
+            </button>
+          </div>
+          <div
+            style="margin-top:1.5rem;padding:1rem;background:var(--inp-bg);border-radius:10px;border:1px solid var(--inp-bdr);">
+            <div
+              style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-dim);margin-bottom:0.5rem;">
+              CURRENT localStorage STATE</div>
+            <pre id="statePreview"
+              style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim);overflow-x:auto;white-space:pre-wrap;word-break:break-all;"></pre>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════
+    //  PORTFOLIO CMS — ISOLATED MODE RENDER ENGINE v3
+    //  Single render target. Zero cross-mode DOM pollution.
+    //  State: { mode, palette, images }
+    //  Render: renderSlots() destroys & rebuilds only active slots.
+    // ═══════════════════════════════════════════════════════════
+
+    const KEY_SETTINGS = 'portfolioSettings';
+    const KEY_IMGS = 'portfolioImages';
+    const _LEGACY_MODE = 'portfolio_mode';
+    const _LEGACY_PAL = 'portfolio_palette';
+    const _LEGACY_IMGS = 'portfolio_images';
+
+    // ══════════════════════════════════════════════════════════
+    //  SLOT MAP — admin key → index.html DOM target
+    //  hero   → #hero                (background-image, cover)
+    //  about  → #img-slot-about      (background-image, av-box)
+    //  proj1  → #img-slot-proj1      (<img> src overlay)
+    //  proj2  → #img-slot-proj2      (<img> src overlay)
+    //  proj3  → #img-slot-proj3      (<img> src overlay)
+    //  proj4  → #img-slot-proj4      (<img> src overlay)
+    //  proj5  → #img-slot-proj5      (<img> src overlay)
+    //  proj6  → #img-slot-proj6      (<img> src overlay)
+    //  Sync:  localStorage portfolioImages + BroadcastChannel
+    // ══════════════════════════════════════════════════════════
+
+    // ── Slot definitions ────────────────────────────────────────
+    const BASE_SLOTS = [
+      { key: 'hero', label: 'Hero Background', icon: 'fa-cloud-upload-alt', hint: '→ #hero (background-image, full-bleed)' },
+      { key: 'about', label: 'About — 3D Card Visual', icon: 'fa-user-astronaut', hint: '→ #img-slot-about .av-box (background-image)' },
+    ];
+
+    const PROJECT_NAMES = ['WanderHolidays', 'Piqwell', 'KaarmaAutospot', 'HYR', 'AI Interview Assistant', 'Snow AI'];
+    const PROJECT_CATS = ['Travel Platform', 'Productivity App', 'E-Commerce', 'Care Portal', 'AI Tool', 'ML Research App'];
+    const PROJ_SLOTS = [1, 2, 3, 4, 5, 6].map(i => ({
+      key: `proj${i}`,
+      label: PROJECT_NAMES[i - 1],
+      cat: PROJECT_CATS[i - 1],
+      hint: `→ #img-slot-proj${i} (<img> overlay)`,
+      idx: i
+    }));
+
+    const PALETTES = ['amethyst', 'topaz', 'platinum'];
+    const PAL_NAMES = { amethyst: 'Royal Amethyst', topaz: 'Imperial Topaz', platinum: 'Platinum Mist' };
+    const PAL_ICONS = { amethyst: 'fa-gem', topaz: 'fa-sun', platinum: 'fa-circle' };
+
+    // ── All slot keys (for image store init) ────────────────────
+    const ALL_SLOT_KEYS = [...BASE_SLOTS.map(s => s.key), ...PROJ_SLOTS.map(s => s.key)];
+
+    // ── Canonical empty image store ──────────────────────────────
+    function emptyImageStore() {
+      const dark = {};
+      ALL_SLOT_KEYS.forEach(k => { dark[k] = ''; });
+      const light = {};
+      PALETTES.forEach(p => {
+        light[p] = {};
+        ALL_SLOT_KEYS.forEach(k => { light[p][k] = ''; });
+      });
+      return { dark, light };
     }
-  }
-};
 
-let projView = 'dark'; // which mode is shown in project grid
+    // ── Application state ────────────────────────────────────────
+    let state = { mode: 'dark', palette: 'amethyst', images: emptyImageStore() };
 
-// ── Init ───────────────────────────────────────────────
-(function init() {
-  loadFromStorage();
-  buildProjectSlots();
-  renderUI();
-  updateStatePreview();
-  checkStorage();
-})();
+    // ── Deep clone ───────────────────────────────────────────────
+    function deepClone(o) { return JSON.parse(JSON.stringify(o)); }
 
-function loadFromStorage() {
-  const savedMode = localStorage.getItem(KEY_MODE);
-  const savedPal  = localStorage.getItem(KEY_PAL);
-  const savedImgs = localStorage.getItem(KEY_IMGS);
-  if (savedMode) state.mode = savedMode;
-  if (savedPal)  state.palette = savedPal;
-  if (savedImgs) {
-    try { const p = JSON.parse(savedImgs); mergeDeep(state.images, p); } catch(e) {}
-  }
-}
-
-function mergeDeep(target, src) {
-  for (const k in src) {
-    if (src[k] && typeof src[k] === 'object' && !Array.isArray(src[k])) {
-      if (!target[k]) target[k] = {};
-      mergeDeep(target[k], src[k]);
-    } else {
-      target[k] = src[k];
+    // ── Merge saved → canonical ──────────────────────────────────
+    function mergeSaved(canonical, saved) {
+      if (!saved || typeof saved !== 'object') return;
+      if (saved.dark && typeof saved.dark === 'object') {
+        ALL_SLOT_KEYS.forEach(s => {
+          if (typeof saved.dark[s] === 'string') canonical.dark[s] = saved.dark[s];
+        });
+      }
+      if (saved.light && typeof saved.light === 'object') {
+        PALETTES.forEach(p => {
+          if (saved.light[p] && typeof saved.light[p] === 'object') {
+            ALL_SLOT_KEYS.forEach(s => {
+              if (typeof saved.light[p][s] === 'string') canonical.light[p][s] = saved.light[p][s];
+            });
+          }
+        });
+      }
     }
-  }
-}
 
-// ── Build project slots ─────────────────────────────────
-const PROJECT_NAMES = ['WanderHolidays','Piqwell','KaarmaAutospot','HYR','AI Interview Assistant','Snow AI'];
-const PROJECT_CATS  = ['Travel Platform','Productivity App','E-Commerce','Care Portal','AI Tool','ML Research App'];
+    // ── BroadcastChannel ─────────────────────────────────────────
+    let _bc = null;
+    try { _bc = new BroadcastChannel('portfolio_cms_sync'); } catch (e) { }
+    function broadcastChange(type) {
+      if (_bc) try { _bc.postMessage({ type }); } catch (e) { }
+    }
 
-function buildProjectSlots() {
-  ['dark','light'].forEach(mode => {
-    const container = document.getElementById(`proj-slots-${mode}`);
-    container.innerHTML = '';
-    for (let i = 1; i <= 6; i++) {
-      const slot = document.createElement('div');
-      slot.innerHTML = `
-        <div style="font-size:0.68rem; color:var(--text-dim); margin-bottom:4px; font-family:'JetBrains Mono',monospace;">
-          PROJ ${String(i).padStart(2,'0')} — ${PROJECT_NAMES[i-1]}
-          <span style="color:var(--accent); font-size:0.58rem; display:block;">${PROJECT_CATS[i-1]}</span>
-        </div>
-        <div class="upload-zone" id="zone-${mode}-proj${i}">
-          <input type="file" accept="image/*" onchange="handleUpload(this,'${mode}','proj${i}')">
-          <button class="uz-clear" onclick="clearSlot(event,'${mode}','proj${i}')"><i class="fas fa-times"></i></button>
-          <img class="uz-preview" id="prev-${mode}-proj${i}" alt="">
-          <div class="uz-icon"><i class="fas fa-image"></i></div>
-          <div class="uz-label">Upload thumbnail</div>
-          <div class="uz-name" id="name-${mode}-proj${i}"></div>
-        </div>
+    // ── Persist ──────────────────────────────────────────────────
+    function persistSettings() {
+      try {
+        localStorage.setItem(KEY_SETTINGS, JSON.stringify({ mode: state.mode, theme: state.palette }));
+        broadcastChange('settings');
+      } catch (e) { }
+    }
+    function persistImages() {
+      try {
+        localStorage.setItem(KEY_IMGS, JSON.stringify(state.images));
+        broadcastChange('images');
+        checkStorage();
+        updateStatePreview();
+      } catch (e) {
+        showToast('⚠️ Storage full — remove some images.', '#f59e0b');
+      }
+    }
+    function persistAll() { persistSettings(); persistImages(); }
+
+    // ── Apply HTML theme attrs to admin panel itself ──────────────
+    function applyAdminTheme() {
+      document.documentElement.setAttribute('data-mode', state.mode);
+      document.documentElement.setAttribute('data-palette', state.palette);
+    }
+
+    // ── Load from localStorage ───────────────────────────────────
+    function loadFromStorage() {
+      const rawSettings = localStorage.getItem(KEY_SETTINGS);
+      if (rawSettings) {
+        try {
+          const s = JSON.parse(rawSettings);
+          if (s.mode && (s.mode === 'dark' || s.mode === 'light')) state.mode = s.mode;
+          if (s.theme && PALETTES.includes(s.theme)) state.palette = s.theme;
+        } catch (e) { }
+      } else {
+        const lm = localStorage.getItem(_LEGACY_MODE);
+        const lp = localStorage.getItem(_LEGACY_PAL);
+        if (lm && (lm === 'dark' || lm === 'light')) state.mode = lm;
+        if (lp && PALETTES.includes(lp)) state.palette = lp;
+      }
+      let rawImgs = localStorage.getItem(KEY_IMGS) || localStorage.getItem(_LEGACY_IMGS);
+      if (rawImgs) {
+        try { mergeSaved(state.images, JSON.parse(rawImgs)); }
+        catch (e) { console.warn('CMS: corrupted image store, using defaults.'); }
+      }
+      localStorage.removeItem(_LEGACY_MODE);
+      localStorage.removeItem(_LEGACY_PAL);
+      localStorage.removeItem(_LEGACY_IMGS);
+    }
+
+    // ── Image accessors ──────────────────────────────────────────
+    function getImage(mode, palette, slot) {
+      if (mode === 'dark') return state.images.dark[slot] || '';
+      return (state.images.light[palette] && state.images.light[palette][slot]) || '';
+    }
+    function setImage(mode, palette, slot, url) {
+      if (mode === 'dark') {
+        state.images.dark[slot] = url;
+      } else {
+        if (!PALETTES.includes(palette)) return;
+        state.images.light[palette][slot] = url;
+      }
+      persistImages();
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  SLOT DOM BUILDER — creates ONE upload zone element
+    // ═══════════════════════════════════════════════════════════
+    function buildUploadZone(mode, palette, slotKey) {
+      const zoneId = `zone-${mode}-${palette || 'dark'}-${slotKey}`;
+      const prevId = `prev-${mode}-${palette || 'dark'}-${slotKey}`;
+      const nameId = `name-${mode}-${palette || 'dark'}-${slotKey}`;
+
+      const zone = document.createElement('div');
+      zone.className = 'upload-zone';
+      zone.id = zoneId;
+      zone.innerHTML = `
+        <input type="file" accept="image/*"
+          onchange="handleUpload(this,'${mode}','${palette}','${slotKey}')">
+        <button class="uz-clear"
+          onclick="clearSlot(event,'${mode}','${palette}','${slotKey}')">
+          <i class="fas fa-times"></i>
+        </button>
+        <img class="uz-preview" id="${prevId}" alt="">
+        <div class="uz-icon"><i class="fas fa-image"></i></div>
+        <div class="uz-label">Click to upload</div>
+        <div class="uz-name" id="${nameId}"></div>
       `;
-      container.appendChild(slot);
+
+      // Restore saved preview immediately
+      const url = getImage(mode, palette, slotKey);
+      if (url) {
+        zone.classList.add('has-img');
+        const img = zone.querySelector('.uz-preview');
+        if (img) { img.src = url; img.classList.add('show'); }
+        const nm = zone.querySelector('.uz-name');
+        if (nm) nm.textContent = 'Image loaded';
+      }
+
+      return zone;
     }
-  });
-}
 
-// ── Render UI from state ────────────────────────────────
-function renderUI() {
-  // Mode tabs
-  document.getElementById('tab-dark').classList.toggle('active', state.mode === 'dark');
-  document.getElementById('tab-light').classList.toggle('active', state.mode === 'light');
+    // ═══════════════════════════════════════════════════════════
+    //  SLOT WRAPPER — label + zone
+    // ═══════════════════════════════════════════════════════════
+    function buildSlotWrapper(mode, palette, slotDef) {
+      const wrap = document.createElement('div');
+      wrap.className = 'upload-slot';
 
-  // Palette section visibility
-  const palSec = document.getElementById('paletteSection');
-  palSec.classList.toggle('hidden', state.mode === 'dark');
+      const labelEl = document.createElement('div');
+      labelEl.className = 'slot-label';
+      if (slotDef.idx) {
+        labelEl.innerHTML = `PROJ ${String(slotDef.idx).padStart(2, '0')} — ${slotDef.label}<span class="slot-sub">${slotDef.cat}</span>`;
+        if (slotDef.hint) {
+          const domRef = document.createElement('span');
+          domRef.className = 'slot-sub';
+          domRef.style.color = 'var(--text-dim)';
+          domRef.style.opacity = '0.7';
+          domRef.textContent = slotDef.hint;
+          labelEl.appendChild(domRef);
+        }
+      } else {
+        labelEl.textContent = slotDef.label;
+        if (slotDef.hint) {
+          const sub = document.createElement('span');
+          sub.className = 'slot-sub'; sub.textContent = slotDef.hint;
+          labelEl.appendChild(sub);
+        }
+      }
 
-  // Palette cards
-  document.querySelectorAll('.pal-card').forEach(c => {
-    c.classList.toggle('active', c.dataset.pal === state.palette);
-  });
-
-  // Status labels
-  document.getElementById('currentModeLabel').textContent = state.mode.charAt(0).toUpperCase() + state.mode.slice(1);
-  document.getElementById('currentPalLabel').textContent = palName(state.palette);
-  document.getElementById('lhl-pal').textContent = palName(state.palette);
-  document.getElementById('lal-pal').textContent = palName(state.palette);
-
-  // Restore preview thumbnails from state
-  restorePreviews('dark', state.images.dark);
-  ['amethyst','topaz','platinum'].forEach(p => {
-    const lightImgs = state.images.light[p] || {};
-    // For light previews, show currently selected palette
-    if (p === state.palette) restorePreviews('light', lightImgs);
-  });
-}
-
-function palName(p) {
-  return {amethyst:'Royal Amethyst', topaz:'Imperial Topaz', platinum:'Platinum Mist'}[p] || p;
-}
-
-function restorePreviews(mode, imgs) {
-  if (!imgs) return;
-  const slots = mode === 'dark'
-    ? ['hero','about','proj1','proj2','proj3','proj4','proj5','proj6']
-    : ['hero','about','proj1','proj2','proj3','proj4','proj5','proj6'];
-
-  slots.forEach(slot => {
-    const url = imgs[slot];
-    const zone = document.getElementById(`zone-${mode}-${slot}`);
-    const prev = document.getElementById(`prev-${mode}-${slot}`);
-    const nameEl = document.getElementById(`name-${mode}-${slot}`);
-    if (!zone || !prev) return;
-    if (url) {
-      prev.src = url;
-      prev.classList.add('show');
-      zone.classList.add('has-img');
-      if (nameEl) nameEl.textContent = 'Image loaded';
-    } else {
-      prev.src = '';
-      prev.classList.remove('show');
-      zone.classList.remove('has-img');
-      if (nameEl) nameEl.textContent = '';
+      wrap.appendChild(labelEl);
+      wrap.appendChild(buildUploadZone(mode, palette, slotDef.key));
+      return wrap;
     }
-  });
-}
 
-// ── Mode select ─────────────────────────────────────────
-window.selectMode = function(mode) {
-  state.mode = mode;
-  renderUI();
-};
+    // ═══════════════════════════════════════════════════════════
+    //  RENDER ENGINE — destroys old, builds only active context
+    // ═══════════════════════════════════════════════════════════
+    function renderSlots() {
+      const target = document.getElementById('slotRenderTarget');
+      // Wipe previous DOM entirely — no hidden leftovers
+      target.innerHTML = '';
 
-// ── Palette select ──────────────────────────────────────
-window.selectPalette = function(pal) {
-  state.palette = pal;
-  renderUI();
-};
+      const mode = state.mode;
+      const palette = mode === 'light' ? state.palette : null;
 
-// ── Project view toggle ─────────────────────────────────
-window.setProjView = function(mode) {
-  projView = mode;
-  document.getElementById('proj-slots-dark').style.display = mode === 'dark' ? 'grid' : 'none';
-  document.getElementById('proj-slots-light').style.display = mode === 'light' ? 'grid' : 'none';
-  document.getElementById('proj-tab-dark').classList.toggle('active', mode === 'dark');
-  document.getElementById('proj-tab-light').classList.toggle('active', mode === 'light');
-};
+      // ── Build base slots section ───────────────────────────
+      const baseSection = document.createElement('div');
+      baseSection.style.marginBottom = '2rem';
 
-// ── Upload handler ──────────────────────────────────────
-window.handleUpload = function(input, mode, slot) {
-  const file = input.files[0];
-  if (!file) return;
-  if (file.size > 3 * 1024 * 1024) { showToast('⚠️ Image must be < 3MB', '#f59e0b'); return; }
+      const baseHead = document.createElement('div');
+      baseHead.className = 'slot-section-head';
+      baseHead.textContent = mode === 'dark' ? 'General Sections — Dark Mode' : `General Sections — ${PAL_NAMES[palette]}`;
+      baseSection.appendChild(baseHead);
 
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const url = e.target.result;
-    setImageState(mode, slot, url);
+      const baseGrid = document.createElement('div');
+      baseGrid.className = 'upload-grid';
+      BASE_SLOTS.forEach(slotDef => {
+        baseGrid.appendChild(buildSlotWrapper(mode, palette, slotDef));
+      });
+      baseSection.appendChild(baseGrid);
+      target.appendChild(baseSection);
 
-    const zone = document.getElementById(`zone-${mode}-${slot}`);
-    const prev = document.getElementById(`prev-${mode}-${slot}`);
-    const nameEl = document.getElementById(`name-${mode}-${slot}`);
-    if (prev) { prev.src = url; prev.classList.add('show'); }
-    if (zone) zone.classList.add('has-img');
-    if (nameEl) nameEl.textContent = file.name.length > 20 ? file.name.slice(0,17)+'...' : file.name;
-    updateStatePreview();
-  };
-  reader.readAsDataURL(file);
-};
+      // ── Build project slots section ────────────────────────
+      const projSection = document.createElement('div');
+      projSection.style.marginBottom = '2rem';
 
-function setImageState(mode, slot, url) {
-  if (mode === 'dark') {
-    state.images.dark[slot] = url;
-  } else {
-    // light: store under current palette
-    if (!state.images.light[state.palette]) state.images.light[state.palette] = {};
-    state.images.light[state.palette][slot] = url;
-  }
-}
+      const projHead = document.createElement('div');
+      projHead.className = 'slot-section-head';
+      projHead.textContent = mode === 'dark' ? 'Project Thumbnails — Dark Mode' : `Project Thumbnails — ${PAL_NAMES[palette]}`;
+      projSection.appendChild(projHead);
 
-// ── Clear slot ──────────────────────────────────────────
-window.clearSlot = function(e, mode, slot) {
-  e.stopPropagation();
-  setImageState(mode, slot, '');
-  const zone = document.getElementById(`zone-${mode}-${slot}`);
-  const prev = document.getElementById(`prev-${mode}-${slot}`);
-  const nameEl = document.getElementById(`name-${mode}-${slot}`);
-  if (prev) { prev.src = ''; prev.classList.remove('show'); }
-  if (zone) zone.classList.remove('has-img');
-  if (nameEl) nameEl.textContent = '';
-  // Clear file input
-  if (zone) { const inp = zone.querySelector('input[type=file]'); if(inp) inp.value=''; }
-  updateStatePreview();
-};
+      const projGrid = document.createElement('div');
+      projGrid.className = 'upload-grid';
+      PROJ_SLOTS.forEach(slotDef => {
+        projGrid.appendChild(buildSlotWrapper(mode, palette, slotDef));
+      });
+      projSection.appendChild(projGrid);
+      target.appendChild(projSection);
+    }
 
-// ── Save All ────────────────────────────────────────────
-window.saveAll = function() {
-  localStorage.setItem(KEY_MODE, state.mode);
-  localStorage.setItem(KEY_PAL, state.palette);
-  localStorage.setItem(KEY_IMGS, JSON.stringify(state.images));
-  showToast('✅ Saved! Portfolio updated.', '#22c55e');
-  updateStatePreview();
-  checkStorage();
-};
+    // ═══════════════════════════════════════════════════════════
+    //  CONTEXT BANNER UPDATE
+    // ═══════════════════════════════════════════════════════════
+    function updateContextBanner() {
+      const icon = document.getElementById('ctxIcon');
+      const label = document.getElementById('ctxLabel');
+      const sub = document.getElementById('ctxSub');
 
-// ── Reset All ───────────────────────────────────────────
-window.resetAll = function() {
-  if (!confirm('Reset all settings and images? This cannot be undone.')) return;
-  localStorage.removeItem(KEY_MODE);
-  localStorage.removeItem(KEY_PAL);
-  localStorage.removeItem(KEY_IMGS);
-  state = {
-    mode: 'dark', palette: 'amethyst',
-    images: {
-      dark: {hero:'',about:'',proj1:'',proj2:'',proj3:'',proj4:'',proj5:'',proj6:''},
-      light: {
-        amethyst: {hero:'',about:'',proj1:'',proj2:'',proj3:'',proj4:'',proj5:'',proj6:''},
-        topaz:    {hero:'',about:'',proj1:'',proj2:'',proj3:'',proj4:'',proj5:'',proj6:''},
-        platinum: {hero:'',about:'',proj1:'',proj2:'',proj3:'',proj4:'',proj5:'',proj6:''}
+      if (state.mode === 'dark') {
+        icon.innerHTML = '<i class="fas fa-moon"></i>';
+        label.textContent = 'Dark Mode';
+        sub.textContent = 'Uploading to: dark namespace';
+      } else {
+        const palName = PAL_NAMES[state.palette];
+        const palIcon = PAL_ICONS[state.palette];
+        icon.innerHTML = `<i class="fas ${palIcon}"></i>`;
+        label.textContent = `Light Mode — ${palName}`;
+        sub.textContent = `Uploading to: light › ${state.palette} namespace`;
+      }
+
+      // Active context label in status bar
+      const ctx = document.getElementById('currentContextLabel');
+      if (ctx) {
+        ctx.textContent = state.mode === 'dark'
+          ? 'Dark Mode'
+          : `Light / ${PAL_NAMES[state.palette]}`;
       }
     }
-  };
-  renderUI();
-  updateStatePreview();
-  checkStorage();
-  showToast('🔄 Reset complete.', '#7B7F85');
-};
 
-// ── Toast ───────────────────────────────────────────────
-function showToast(msg, bg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.style.background = bg || '#22c55e';
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
+    // ═══════════════════════════════════════════════════════════
+    //  FULL UI RENDER
+    // ═══════════════════════════════════════════════════════════
+    function renderUI() {
+      // Mode tabs
+      document.getElementById('tab-dark').classList.toggle('active', state.mode === 'dark');
+      document.getElementById('tab-light').classList.toggle('active', state.mode === 'light');
 
-// ── Storage check ───────────────────────────────────────
-function checkStorage() {
-  const used = JSON.stringify(localStorage).length;
-  const pct = ((used / (5 * 1024 * 1024)) * 100).toFixed(1);
-  const dot = document.getElementById('storageIndicator');
-  const lbl = document.getElementById('storageStatus');
-  const kb = (used / 1024).toFixed(1);
-  lbl.textContent = `localStorage: ${kb} KB used (~${pct}% of 5MB)`;
-  dot.className = 'status-dot ' + (parseFloat(pct) > 70 ? 'yellow' : 'green');
-}
+      // Palette section
+      const palSec = document.getElementById('paletteSection');
+      palSec.classList.toggle('hidden', state.mode === 'dark');
 
-// ── State preview ───────────────────────────────────────
-function updateStatePreview() {
-  const raw = {
-    mode: state.mode,
-    palette: state.palette,
-    images: {
-      dark: summarizeImgs(state.images.dark),
-      light: {
-        amethyst: summarizeImgs(state.images.light.amethyst),
-        topaz:    summarizeImgs(state.images.light.topaz),
-        platinum: summarizeImgs(state.images.light.platinum)
+      // Palette cards
+      document.querySelectorAll('.pal-card').forEach(c => {
+        c.classList.toggle('active', c.dataset.pal === state.palette);
+      });
+
+      updateContextBanner();
+      renderSlots();        // ← single dynamic render, no hidden zones
+      updateStatePreview();
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  MODE / PALETTE SELECTORS
+    // ═══════════════════════════════════════════════════════════
+    window.selectMode = function (mode) {
+      state.mode = mode;
+      persistSettings();
+      applyAdminTheme();
+      renderUI();
+    };
+
+    window.selectPalette = function (pal) {
+      if (!PALETTES.includes(pal)) return;
+      state.palette = pal;
+      persistSettings();
+      applyAdminTheme();
+      renderUI();
+    };
+
+    // ═══════════════════════════════════════════════════════════
+    //  UPLOAD HANDLER
+    // ═══════════════════════════════════════════════════════════
+    window.handleUpload = function (input, mode, palette, slot) {
+      const file = input.files[0];
+      if (!file) return;
+      if (file.size > 3 * 1024 * 1024) {
+        showToast('⚠️ Image must be under 3 MB', '#f59e0b');
+        input.value = ''; return;
+      }
+
+      const resolvedPalette = mode === 'light' ? state.palette : null;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const url = e.target.result;
+        setImage(mode, resolvedPalette, slot, url);
+
+        // Update active zone DOM directly
+        const zoneId = `zone-${mode}-${resolvedPalette || 'dark'}-${slot}`;
+        const prevId = `prev-${mode}-${resolvedPalette || 'dark'}-${slot}`;
+        const nameId = `name-${mode}-${resolvedPalette || 'dark'}-${slot}`;
+        applySlotDOM(zoneId, prevId, nameId, url,
+          file.name.length > 22 ? file.name.slice(0, 19) + '...' : file.name);
+
+        showToast(
+          '✅ Saved — ' + (mode === 'dark' ? 'Dark Mode' : PAL_NAMES[resolvedPalette]),
+          '#22c55e'
+        );
+      };
+      reader.readAsDataURL(file);
+    };
+
+    // ═══════════════════════════════════════════════════════════
+    //  CLEAR SLOT
+    // ═══════════════════════════════════════════════════════════
+    window.clearSlot = function (e, mode, palette, slot) {
+      e.stopPropagation();
+      const resolvedPalette = mode === 'light' ? state.palette : null;
+      setImage(mode, resolvedPalette, slot, '');
+
+      const zoneId = `zone-${mode}-${resolvedPalette || 'dark'}-${slot}`;
+      const prevId = `prev-${mode}-${resolvedPalette || 'dark'}-${slot}`;
+      const nameId = `name-${mode}-${resolvedPalette || 'dark'}-${slot}`;
+      applySlotDOM(zoneId, prevId, nameId, '', '');
+      showToast('🗑️ Slot cleared', '#7B7F85');
+    };
+
+    // ═══════════════════════════════════════════════════════════
+    //  DOM SLOT APPLY
+    // ═══════════════════════════════════════════════════════════
+    function applySlotDOM(zoneId, prevId, nameId, url, filename) {
+      const zone = document.getElementById(zoneId);
+      const prev = document.getElementById(prevId);
+      const nameEl = document.getElementById(nameId);
+      if (!zone || !prev) return;
+
+      if (url) {
+        prev.src = url; prev.classList.add('show');
+        zone.classList.add('has-img');
+        if (nameEl) nameEl.textContent = filename || 'Image loaded';
+      } else {
+        prev.src = ''; prev.classList.remove('show');
+        zone.classList.remove('has-img');
+        if (nameEl) nameEl.textContent = '';
+        const inp = zone.querySelector('input[type=file]');
+        if (inp) inp.value = '';
       }
     }
-  };
-  document.getElementById('statePreview').textContent = JSON.stringify(raw, null, 2);
-}
 
-function summarizeImgs(obj) {
-  const out = {};
-  for (const k in obj) out[k] = obj[k] ? '[image data]' : '';
-  return out;
-}
-</script>
+    // ═══════════════════════════════════════════════════════════
+    //  SAVE ALL / RESET ALL
+    // ═══════════════════════════════════════════════════════════
+    window.saveAll = function () {
+      persistAll();
+      showToast('✅ All changes saved & applied!', '#22c55e');
+    };
+
+    window.resetAll = function () {
+      if (!confirm('Reset all settings and images? This cannot be undone.')) return;
+      localStorage.removeItem(KEY_SETTINGS);
+      localStorage.removeItem(KEY_IMGS);
+      localStorage.removeItem(_LEGACY_MODE);
+      localStorage.removeItem(_LEGACY_PAL);
+      localStorage.removeItem(_LEGACY_IMGS);
+
+      state = { mode: 'dark', palette: 'amethyst', images: emptyImageStore() };
+      broadcastChange('reset');
+      applyAdminTheme();
+      renderUI();
+      checkStorage();
+      showToast('🔄 Reset complete.', '#7B7F85');
+    };
+
+    // ═══════════════════════════════════════════════════════════
+    //  TOAST
+    // ═══════════════════════════════════════════════════════════
+    function showToast(msg, bg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.background = bg || '#22c55e';
+      t.classList.add('show');
+      clearTimeout(t._tid);
+      t._tid = setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  STORAGE STATUS
+    // ═══════════════════════════════════════════════════════════
+    function checkStorage() {
+      try {
+        const used = new Blob(Object.values(localStorage)).size;
+        const pct = ((used / (5 * 1024 * 1024)) * 100).toFixed(1);
+        const kb = (used / 1024).toFixed(1);
+        document.getElementById('storageStatus').textContent =
+          `localStorage: ${kb} KB used (~${pct}% of 5 MB)`;
+        document.getElementById('storageIndicator').className =
+          'status-dot ' + (parseFloat(pct) > 70 ? 'yellow' : 'green');
+      } catch (e) { }
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  STATE PREVIEW
+    // ═══════════════════════════════════════════════════════════
+    function updateStatePreview() {
+      function summarize(obj) {
+        const out = {};
+        for (const k in obj) out[k] = obj[k] ? '[image]' : '—';
+        return out;
+      }
+      const preview = {
+        mode: state.mode,
+        palette: state.palette,
+        images: {
+          dark: summarize(state.images.dark),
+          light: {
+            amethyst: summarize(state.images.light.amethyst),
+            topaz: summarize(state.images.light.topaz),
+            platinum: summarize(state.images.light.platinum)
+          }
+        }
+      };
+      const el = document.getElementById('statePreview');
+      if (el) el.textContent = JSON.stringify(preview, null, 2);
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  INIT
+    // ═══════════════════════════════════════════════════════════
+    (function init() {
+      loadFromStorage();
+      applyAdminTheme();
+      renderUI();
+      checkStorage();
+    })();
+  </script>
 </body>
+
 </html>

@@ -235,7 +235,20 @@
       align-items: center;
       padding: 0 6vw 10rem;
       overflow: hidden;
-      background: #030014 url("portfolio bg.png") no-repeat center center / cover;
+      background-color: #030014;
+      background-image: url("portfolio bg.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+
+    #hero[data-custom-img="true"] {
+      background-image: var(--hero-custom-img) !important;
+    }
+
+    #hero[data-custom-img="false"],
+    #hero[data-custom-img=""] {
+      background-image: url("portfolio bg.png") !important;
     }
 
     #hero::before {
@@ -836,7 +849,33 @@
     .av-grid-bg {
       position: absolute;
       inset: 0;
-      background: url("name with image.png") no-repeat center center / cover;
+      background-image: url("name with image.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      transition: opacity 0.3s;
+      z-index: 0;
+    }
+
+    /* When custom image is applied to parent av-box, hide the default layer */
+    #img-slot-about[data-custom-img="true"] .av-grid-bg {
+      display: none !important;
+    }
+
+    /* Custom image rendered as a sibling img inside av-box */
+    #img-slot-about .av-custom-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+      display: none;
+      border-radius: inherit;
+    }
+
+    #img-slot-about[data-custom-img="true"] .av-custom-img {
+      display: block;
     }
 
     .float-card {
@@ -1531,6 +1570,17 @@
       font-size: 5rem;
       filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
       transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      z-index: 0;
+    }
+
+    /* When a custom image is loaded, suppress default decoration layers */
+    .proj-preview[data-custom-img="true"]::before {
+      display: none;
+    }
+
+    .proj-preview[data-custom-img="true"] .proj-main-icon {
+      display: none;
     }
 
     .proj-card:hover .proj-main-icon {
@@ -4355,6 +4405,56 @@
     .tech-stack-box {
       transition: background .45s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
     }
+
+    /* === ADMIN NAV BUTTON === */
+    .admin-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0.42rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(153, 69, 255, 0.4);
+      background: rgba(153, 69, 255, 0.07);
+      color: rgba(226, 232, 240, 0.75);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+
+    .admin-nav-btn i {
+      font-size: 0.78rem;
+      color: #9945ff;
+    }
+
+    .admin-nav-btn:hover {
+      background: rgba(153, 69, 255, 0.18);
+      border-color: rgba(153, 69, 255, 0.8);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(153, 69, 255, 0.25);
+      transform: translateY(-1px);
+    }
+
+    [data-mode="light"] .admin-nav-btn {
+      border-color: var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+    }
+
+    [data-mode="light"] .admin-nav-btn i {
+      color: var(--primary);
+    }
+
+    [data-mode="light"] .admin-nav-btn:hover {
+      border-color: var(--primary);
+      background: var(--surface-elevated);
+      color: var(--primary);
+      box-shadow: var(--shadow-btn);
+    }
   </style>
 </head>
 
@@ -4378,6 +4478,10 @@
         <i class="fas fa-circle-half-stroke"></i>
         <span id="modeBtnLabel">Light</span>
       </button>
+      <a href="admin.html" target="_blank" class="admin-nav-btn" id="adminNavBtn" title="Open Admin Panel">
+        <i class="fas fa-sliders-h"></i>
+        <span>Admin</span>
+      </a>
       <div class="hamburger" id="hbg" onclick="toggleMob()">
         <span></span><span></span><span></span>
       </div>
@@ -4490,6 +4594,7 @@
         <div class="av-glow"></div>
         <div class="av-box" id="img-slot-about">
           <div class="av-grid-bg"></div>
+          <img class="av-custom-img" alt="">
           <div class="av-glare"></div>
         </div>
         <div class="float-card fc1">
@@ -5754,76 +5859,255 @@
   <!-- THEME SYSTEM JS -->
   <script>
     (function () {
+      // ══════════════════════════════════════════════════
+      //  PORTFOLIO WEBSITE — UNIFIED CMS SYNC ENGINE v2
+      //  Reads from: portfolioSettings + portfolioImages
+      //  Syncs via: storage events + BroadcastChannel
+      // ══════════════════════════════════════════════════
+
       const html = document.documentElement;
-      const KEY_MODE = 'portfolio_mode';
-      const KEY_PAL = 'portfolio_palette';
-      const KEY_IMGS = 'portfolio_images';
 
-      const PAL_NAMES = { amethyst: 'Royal Amethyst', topaz: 'Imperial Topaz', platinum: 'Platinum Mist' };
+      // Unified storage keys — must match admin panel exactly
+      const KEY_SETTINGS = 'portfolioSettings';
+      const KEY_IMGS = 'portfolioImages';
 
+      // Legacy keys — migrated on first load
+      const _LEGACY_MODE = 'portfolio_mode';
+      const _LEGACY_PAL = 'portfolio_palette';
+      const _LEGACY_IMGS = 'portfolio_images';
+
+      const ALL_SLOTS = ['hero', 'about', 'proj1', 'proj2', 'proj3', 'proj4', 'proj5', 'proj6'];
+      const PALETTES = ['amethyst', 'topaz', 'platinum'];
+
+      // ── BroadcastChannel — same-origin real-time sync ──
+      let _bc = null;
+      try { _bc = new BroadcastChannel('portfolio_cms_sync'); } catch (e) { }
+
+      // ── Slot applier registry ───────────────────────────
+      const SLOT_FN = {};
+
+      SLOT_FN['hero'] = function (url) {
+        const el = document.getElementById('hero');
+        if (!el) return;
+        if (url) {
+          // Clear default, apply only the uploaded image
+          el.style.setProperty('--hero-custom-img', 'url(' + url + ')');
+          el.setAttribute('data-custom-img', 'true');
+          el.style.backgroundImage = 'url(' + url + ')';
+        } else {
+          // Restore default — remove all inline overrides, CSS rule takes over
+          el.style.removeProperty('--hero-custom-img');
+          el.removeAttribute('data-custom-img');
+          el.style.backgroundImage = '';
+        }
+      };
+
+      SLOT_FN['about'] = function (url) {
+        const el = document.getElementById('img-slot-about');
+        if (!el) return;
+        const customImg = el.querySelector('.av-custom-img');
+        if (url) {
+          // Show custom image, hide default .av-grid-bg via data attr
+          el.setAttribute('data-custom-img', 'true');
+          // Clear any stale background-image on the container itself
+          el.style.backgroundImage = '';
+          el.style.backgroundSize = '';
+          if (customImg) { customImg.src = url; }
+        } else {
+          // Remove custom image, restore default .av-grid-bg
+          el.removeAttribute('data-custom-img');
+          el.style.backgroundImage = '';
+          el.style.backgroundSize = '';
+          if (customImg) { customImg.src = ''; }
+        }
+      };
+
+      for (var _i = 1; _i <= 6; _i++) {
+        (function (i) {
+          SLOT_FN['proj' + i] = function (url) {
+            const el = document.getElementById('img-slot-proj' + i);
+            if (!el) return;
+            const preview = el.closest('.proj-preview');
+            const defaultIcon = preview ? preview.querySelector('.proj-main-icon') : null;
+            if (url) {
+              // Show uploaded image, hide default icon layer
+              el.src = url;
+              el.style.display = 'block';
+              if (defaultIcon) defaultIcon.style.opacity = '0';
+              if (preview) preview.setAttribute('data-custom-img', 'true');
+            } else {
+              // Remove uploaded image, restore default icon
+              el.src = '';
+              el.style.display = 'none';
+              if (defaultIcon) defaultIcon.style.opacity = '';
+              if (preview) preview.removeAttribute('data-custom-img');
+            }
+          };
+        })(_i);
+      }
+
+      // ── Read current mode + palette from HTML attrs ──────
+      function getMode() { return html.getAttribute('data-mode') || 'dark'; }
+      function getPalette() { return html.getAttribute('data-palette') || 'amethyst'; }
+
+      // ── Image engine — loads only the correct context ────
+      function applyImages() {
+        const raw = localStorage.getItem(KEY_IMGS);
+        const mode = getMode();
+        const pal = getPalette();
+
+        // Start with empty map — guarantees stale images are cleared
+        const emptyMap = {};
+        ALL_SLOTS.forEach(function (s) { emptyMap[s] = ''; });
+
+        var modeImgs = emptyMap;
+
+        if (raw) {
+          try {
+            const imgs = JSON.parse(raw);
+            if (mode === 'dark') {
+              // Strictly dark store only
+              modeImgs = (imgs.dark && typeof imgs.dark === 'object')
+                ? Object.assign({}, emptyMap, imgs.dark)
+                : emptyMap;
+            } else {
+              // Strictly the selected light palette store only
+              const palStore = imgs.light && imgs.light[pal];
+              modeImgs = (palStore && typeof palStore === 'object')
+                ? Object.assign({}, emptyMap, palStore)
+                : emptyMap;
+            }
+          } catch (e) {
+            console.warn('Portfolio: image store parse error', e);
+          }
+        }
+
+        ALL_SLOTS.forEach(function (slot) {
+          if (SLOT_FN[slot]) SLOT_FN[slot](modeImgs[slot] || '');
+        });
+      }
+
+      // ── Theme engine ─────────────────────────────────────
       function applyMode(mode, save) {
+        if (mode !== 'dark' && mode !== 'light') mode = 'dark';
         html.setAttribute('data-mode', mode);
-        if (save) localStorage.setItem(KEY_MODE, mode);
+        if (save) {
+          _writeSettings(mode, getPalette());
+        }
         const lbl = document.getElementById('modeBtnLabel');
         if (lbl) lbl.textContent = mode === 'dark' ? 'Light' : 'Dark';
+        applyImages();
       }
 
       function applyPalette(pal, save) {
+        if (!PALETTES.includes(pal)) pal = 'amethyst';
         html.setAttribute('data-palette', pal);
         html.setAttribute('data-theme', pal);
-        if (save) localStorage.setItem(KEY_PAL, pal);
-        document.querySelectorAll('.pal-btn').forEach(b =>
-          b.classList.toggle('active', b.dataset.pal === pal)
-        );
+        if (save) {
+          _writeSettings(getMode(), pal);
+        }
+        document.querySelectorAll('.pal-btn').forEach(function (b) {
+          b.classList.toggle('active', b.dataset.pal === pal);
+        });
+        applyImages();
       }
 
-      function applyImages() {
-        const raw = localStorage.getItem(KEY_IMGS);
-        if (!raw) return;
+      // ── Write settings to unified key ───────────────────
+      function _writeSettings(mode, theme) {
         try {
-          const imgs = JSON.parse(raw);
-          const mode = html.getAttribute('data-mode') || 'dark';
-          const pal = html.getAttribute('data-palette') || 'amethyst';
-          const modeImgs = mode === 'light'
-            ? (imgs.light && imgs.light[pal] ? imgs.light[pal] : {})
-            : (imgs.dark || {});
-          Object.entries(modeImgs).forEach(([slot, url]) => {
-            if (!url) return;
-            if (slot === 'hero') {
-              const el = document.getElementById('hero');
-              if (el) el.style.backgroundImage = 'url(' + url + ')';
-            } else if (slot === 'about') {
-              const el = document.getElementById('img-slot-about');
-              if (el) { el.style.backgroundImage = 'url(' + url + ')'; el.style.backgroundSize = 'cover'; }
-            } else {
-              const m = slot.match(/^proj(\d+)$/);
-              if (m) {
-                const el = document.getElementById('img-slot-proj' + m[1]);
-                if (el) { el.src = url; el.style.display = 'block'; }
-              }
-            }
-          });
-        } catch (e) { console.warn('Image restore:', e); }
+          localStorage.setItem(KEY_SETTINGS, JSON.stringify({ mode: mode, theme: theme }));
+        } catch (e) { }
       }
 
-      /* init */
-      const savedMode = localStorage.getItem(KEY_MODE) || 'dark';
-      const savedPal = localStorage.getItem(KEY_PAL) || 'amethyst';
-      applyMode(savedMode, false);
-      applyPalette(savedPal, false);
-      applyImages();
+      // ── Load settings from unified key (+ legacy migration) ─
+      function loadSettings() {
+        var mode = 'dark', pal = 'amethyst';
 
+        const rawSettings = localStorage.getItem(KEY_SETTINGS);
+        if (rawSettings) {
+          try {
+            const s = JSON.parse(rawSettings);
+            if (s.mode && (s.mode === 'dark' || s.mode === 'light')) mode = s.mode;
+            if (s.theme && PALETTES.includes(s.theme)) pal = s.theme;
+          } catch (e) { }
+        } else {
+          // One-time legacy migration
+          const lm = localStorage.getItem(_LEGACY_MODE);
+          const lp = localStorage.getItem(_LEGACY_PAL);
+          if (lm && (lm === 'dark' || lm === 'light')) mode = lm;
+          if (lp && PALETTES.includes(lp)) pal = lp;
+        }
+
+        // Migrate legacy image key if needed
+        if (!localStorage.getItem(KEY_IMGS)) {
+          const li = localStorage.getItem(_LEGACY_IMGS);
+          if (li) {
+            try { localStorage.setItem(KEY_IMGS, li); } catch (e) { }
+          }
+        }
+
+        // Remove legacy keys after migration
+        localStorage.removeItem(_LEGACY_MODE);
+        localStorage.removeItem(_LEGACY_PAL);
+        localStorage.removeItem(_LEGACY_IMGS);
+
+        return { mode: mode, pal: pal };
+      }
+
+      // ── Full re-sync from storage (called by events) ─────
+      function syncFromStorage() {
+        const rawSettings = localStorage.getItem(KEY_SETTINGS);
+        if (rawSettings) {
+          try {
+            const s = JSON.parse(rawSettings);
+            const mode = (s.mode && (s.mode === 'dark' || s.mode === 'light')) ? s.mode : 'dark';
+            const pal = (s.theme && PALETTES.includes(s.theme)) ? s.theme : 'amethyst';
+            // Apply without saving (avoids write loop)
+            applyMode(mode, false);
+            applyPalette(pal, false);
+          } catch (e) { }
+        }
+        applyImages();
+      }
+
+      // ── Init ─────────────────────────────────────────────
+      (function () {
+        const s = loadSettings();
+        applyMode(s.mode, false);
+        applyPalette(s.pal, false);
+        applyImages();
+      })();
+
+      // ── Public API for UI controls (mode toggle, palette btns) ─
       window.toggleMode = function () {
-        const cur = html.getAttribute('data-mode') || 'dark';
+        const cur = getMode();
         applyMode(cur === 'dark' ? 'light' : 'dark', true);
       };
-      window.setPalette = function (pal, save) { applyPalette(pal, save !== false); };
 
+      window.setPalette = function (pal, save) {
+        applyPalette(pal, save !== false);
+      };
+
+      // ── Cross-tab sync: storage event (different tabs) ───
       window.addEventListener('storage', function (e) {
-        if (e.key === KEY_MODE) applyMode(e.newValue || 'dark', false);
-        if (e.key === KEY_PAL) applyPalette(e.newValue || 'amethyst', false);
+        if (e.key === KEY_SETTINGS) syncFromStorage();
         if (e.key === KEY_IMGS) applyImages();
+        // Legacy key fallback (should not normally fire post-migration)
+        if (e.key === _LEGACY_MODE || e.key === _LEGACY_PAL) syncFromStorage();
+        if (e.key === _LEGACY_IMGS) applyImages();
       });
+
+      // ── Cross-tab sync: BroadcastChannel (same + diff tabs) ─
+      if (_bc) {
+        _bc.onmessage = function (e) {
+          if (!e.data || !e.data.type) return;
+          switch (e.data.type) {
+            case 'settings': syncFromStorage(); break;
+            case 'images': applyImages(); break;
+            case 'reset': syncFromStorage(); applyImages(); break;
+          }
+        };
+      }
     })();
   </script>
 </body>

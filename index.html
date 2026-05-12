@@ -862,6 +862,19 @@
       display: none !important;
     }
 
+    /* ── Light mode: per-palette about section default images ── */
+    [data-mode="light"][data-palette="amethyst"] #img-slot-about:not([data-custom-img="true"]) .av-grid-bg {
+      background-image: url("about_amethyst.png");
+    }
+
+    [data-mode="light"][data-palette="topaz"] #img-slot-about:not([data-custom-img="true"]) .av-grid-bg {
+      background-image: url("about_topaz.png");
+    }
+
+    [data-mode="light"][data-palette="platinum"] #img-slot-about:not([data-custom-img="true"]) .av-grid-bg {
+      background-image: url("about_platinum.png");
+    }
+
     /* Custom image rendered as a sibling img inside av-box */
     #img-slot-about .av-custom-img {
       position: absolute;
@@ -3344,6 +3357,25 @@
       background-color: var(--hero-bg);
     }
 
+    /* ── Per-palette hero backgrounds (light mode) ── */
+    [data-mode="light"][data-palette="amethyst"] #hero:not([data-custom-img="true"]) {
+      background-image: url("hero_amethyst.png") !important;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    [data-mode="light"][data-palette="topaz"] #hero:not([data-custom-img="true"]) {
+      background-image: url("hero_topaz.png") !important;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    [data-mode="light"][data-palette="platinum"] #hero:not([data-custom-img="true"]) {
+      background-image: url("hero_platinum.png") !important;
+      background-size: cover;
+      background-position: center center;
+    }
+
     [data-mode="light"] #hero::before {
       background:
         linear-gradient(to bottom, transparent 45%, var(--hero-o1) 68%, var(--hero-o2) 92%, var(--bg-primary) 100%),
@@ -3541,6 +3573,30 @@
       background: var(--surface);
       border: 1px solid var(--border);
       box-shadow: var(--shadow-card);
+      isolation: isolate;
+    }
+
+    /* Light mode: custom image always sharp — no blur/haze */
+    [data-mode="light"] .av-glow {
+      opacity: 0;
+      display: none;
+    }
+
+    [data-mode="light"] .av-custom-img {
+      filter: none !important;
+      -webkit-filter: none !important;
+      opacity: 1 !important;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    [data-mode="light"] .av-box::after {
+      opacity: 0;
+    }
+
+    [data-mode="light"] .av-glare {
+      display: none;
     }
 
     [data-mode="light"] .hl-dot {
@@ -5856,22 +5912,23 @@
     </div>
   </div>
 
-  <!-- THEME SYSTEM JS -->
+  <!-- THEME SYSTEM JS — CMS ENGINE v4 (Full Theme-Wise Sync) -->
   <script>
     (function () {
-      // ══════════════════════════════════════════════════
-      //  PORTFOLIO WEBSITE — UNIFIED CMS SYNC ENGINE v2
-      //  Reads from: portfolioSettings + portfolioImages
-      //  Syncs via: storage events + BroadcastChannel
-      // ══════════════════════════════════════════════════
+      // ══════════════════════════════════════════════════════════════
+      //  PORTFOLIO WEBSITE — UNIFIED CMS SYNC ENGINE v4
+      //  Features:
+      //   • Theme-wise image storage (dark / light[amethyst|topaz|platinum])
+      //   • Cross-theme fallback rendering (req 13, 15)
+      //   • BroadcastChannel + storage event cross-tab sync
+      //   • Instant DOM updates on admin changes
+      //  Storage keys: portfolioSettings + portfolioImages
+      // ══════════════════════════════════════════════════════════════
 
       const html = document.documentElement;
 
-      // Unified storage keys — must match admin panel exactly
       const KEY_SETTINGS = 'portfolioSettings';
       const KEY_IMGS = 'portfolioImages';
-
-      // Legacy keys — migrated on first load
       const _LEGACY_MODE = 'portfolio_mode';
       const _LEGACY_PAL = 'portfolio_palette';
       const _LEGACY_IMGS = 'portfolio_images';
@@ -5879,23 +5936,21 @@
       const ALL_SLOTS = ['hero', 'about', 'proj1', 'proj2', 'proj3', 'proj4', 'proj5', 'proj6'];
       const PALETTES = ['amethyst', 'topaz', 'platinum'];
 
-      // ── BroadcastChannel — same-origin real-time sync ──
+      // ── BroadcastChannel — instant same-origin real-time sync ─────
       let _bc = null;
       try { _bc = new BroadcastChannel('portfolio_cms_sync'); } catch (e) { }
 
-      // ── Slot applier registry ───────────────────────────
+      // ── Slot applier registry ─────────────────────────────────────
       const SLOT_FN = {};
 
       SLOT_FN['hero'] = function (url) {
         const el = document.getElementById('hero');
         if (!el) return;
         if (url) {
-          // Clear default, apply only the uploaded image
           el.style.setProperty('--hero-custom-img', 'url(' + url + ')');
           el.setAttribute('data-custom-img', 'true');
           el.style.backgroundImage = 'url(' + url + ')';
         } else {
-          // Restore default — remove all inline overrides, CSS rule takes over
           el.style.removeProperty('--hero-custom-img');
           el.removeAttribute('data-custom-img');
           el.style.backgroundImage = '';
@@ -5907,14 +5962,11 @@
         if (!el) return;
         const customImg = el.querySelector('.av-custom-img');
         if (url) {
-          // Show custom image, hide default .av-grid-bg via data attr
           el.setAttribute('data-custom-img', 'true');
-          // Clear any stale background-image on the container itself
           el.style.backgroundImage = '';
           el.style.backgroundSize = '';
           if (customImg) { customImg.src = url; }
         } else {
-          // Remove custom image, restore default .av-grid-bg
           el.removeAttribute('data-custom-img');
           el.style.backgroundImage = '';
           el.style.backgroundSize = '';
@@ -5930,13 +5982,11 @@
             const preview = el.closest('.proj-preview');
             const defaultIcon = preview ? preview.querySelector('.proj-main-icon') : null;
             if (url) {
-              // Show uploaded image, hide default icon layer
               el.src = url;
               el.style.display = 'block';
               if (defaultIcon) defaultIcon.style.opacity = '0';
               if (preview) preview.setAttribute('data-custom-img', 'true');
             } else {
-              // Remove uploaded image, restore default icon
               el.src = '';
               el.style.display = 'none';
               if (defaultIcon) defaultIcon.style.opacity = '';
@@ -5946,54 +5996,60 @@
         })(_i);
       }
 
-      // ── Read current mode + palette from HTML attrs ──────
+      // ── Mode / palette helpers ────────────────────────────────────
       function getMode() { return html.getAttribute('data-mode') || 'dark'; }
       function getPalette() { return html.getAttribute('data-palette') || 'amethyst'; }
 
-      // ── Image engine — loads only the correct context ────
+      // ── Cross-theme fallback image resolver (req 13, 15) ─────────
+      // Returns the best available URL for a slot in the current context.
+      // Falls back: current palette → other palettes → dark → empty string
+      function resolveSlotImage(imgs, mode, pal, slot) {
+        // 1. Try exact match
+        if (mode === 'dark') {
+          if (imgs.dark && imgs.dark[slot]) return imgs.dark[slot];
+        } else {
+          const palStore = imgs.light && imgs.light[pal];
+          if (palStore && palStore[slot]) return palStore[slot];
+
+          // 2. Fallback to other light palettes
+          for (var fi = 0; fi < PALETTES.length; fi++) {
+            var fbPal = PALETTES[fi];
+            if (fbPal === pal) continue;
+            var fbStore = imgs.light && imgs.light[fbPal];
+            if (fbStore && fbStore[slot]) return fbStore[slot];
+          }
+
+          // 3. Last resort: dark mode image
+          if (imgs.dark && imgs.dark[slot]) return imgs.dark[slot];
+        }
+        return '';
+      }
+
+      // ── Image engine — loads active context with fallback ─────────
       function applyImages() {
         const raw = localStorage.getItem(KEY_IMGS);
         const mode = getMode();
         const pal = getPalette();
 
-        // Start with empty map — guarantees stale images are cleared
-        const emptyMap = {};
-        ALL_SLOTS.forEach(function (s) { emptyMap[s] = ''; });
-
-        var modeImgs = emptyMap;
-
+        var imgs = null;
         if (raw) {
-          try {
-            const imgs = JSON.parse(raw);
-            if (mode === 'dark') {
-              // Strictly dark store only
-              modeImgs = (imgs.dark && typeof imgs.dark === 'object')
-                ? Object.assign({}, emptyMap, imgs.dark)
-                : emptyMap;
-            } else {
-              // Strictly the selected light palette store only
-              const palStore = imgs.light && imgs.light[pal];
-              modeImgs = (palStore && typeof palStore === 'object')
-                ? Object.assign({}, emptyMap, palStore)
-                : emptyMap;
-            }
-          } catch (e) {
-            console.warn('Portfolio: image store parse error', e);
+          try { imgs = JSON.parse(raw); } catch (e) {
+            console.warn('Portfolio CMS: image store parse error', e);
           }
         }
 
         ALL_SLOTS.forEach(function (slot) {
-          if (SLOT_FN[slot]) SLOT_FN[slot](modeImgs[slot] || '');
+          var url = '';
+          if (imgs) url = resolveSlotImage(imgs, mode, pal, slot);
+          if (SLOT_FN[slot]) SLOT_FN[slot](url);
         });
       }
 
-      // ── Theme engine ─────────────────────────────────────
+      // ── Theme engine ──────────────────────────────────────────────
       function applyMode(mode, save) {
         if (mode !== 'dark' && mode !== 'light') mode = 'dark';
         html.setAttribute('data-mode', mode);
-        if (save) {
-          _writeSettings(mode, getPalette());
-        }
+        if (save) _writeSettings(mode, getPalette());
         const lbl = document.getElementById('modeBtnLabel');
         if (lbl) lbl.textContent = mode === 'dark' ? 'Light' : 'Dark';
         applyImages();
@@ -6003,26 +6059,20 @@
         if (!PALETTES.includes(pal)) pal = 'amethyst';
         html.setAttribute('data-palette', pal);
         html.setAttribute('data-theme', pal);
-        if (save) {
-          _writeSettings(getMode(), pal);
-        }
+        if (save) _writeSettings(getMode(), pal);
         document.querySelectorAll('.pal-btn').forEach(function (b) {
           b.classList.toggle('active', b.dataset.pal === pal);
         });
         applyImages();
       }
 
-      // ── Write settings to unified key ───────────────────
       function _writeSettings(mode, theme) {
-        try {
-          localStorage.setItem(KEY_SETTINGS, JSON.stringify({ mode: mode, theme: theme }));
-        } catch (e) { }
+        try { localStorage.setItem(KEY_SETTINGS, JSON.stringify({ mode, theme })); } catch (e) { }
       }
 
-      // ── Load settings from unified key (+ legacy migration) ─
+      // ── Load settings (+ legacy migration) ───────────────────────
       function loadSettings() {
         var mode = 'dark', pal = 'amethyst';
-
         const rawSettings = localStorage.getItem(KEY_SETTINGS);
         if (rawSettings) {
           try {
@@ -6031,30 +6081,23 @@
             if (s.theme && PALETTES.includes(s.theme)) pal = s.theme;
           } catch (e) { }
         } else {
-          // One-time legacy migration
           const lm = localStorage.getItem(_LEGACY_MODE);
           const lp = localStorage.getItem(_LEGACY_PAL);
           if (lm && (lm === 'dark' || lm === 'light')) mode = lm;
           if (lp && PALETTES.includes(lp)) pal = lp;
         }
-
-        // Migrate legacy image key if needed
+        // Migrate legacy image key
         if (!localStorage.getItem(KEY_IMGS)) {
           const li = localStorage.getItem(_LEGACY_IMGS);
-          if (li) {
-            try { localStorage.setItem(KEY_IMGS, li); } catch (e) { }
-          }
+          if (li) { try { localStorage.setItem(KEY_IMGS, li); } catch (e) { } }
         }
-
-        // Remove legacy keys after migration
         localStorage.removeItem(_LEGACY_MODE);
         localStorage.removeItem(_LEGACY_PAL);
         localStorage.removeItem(_LEGACY_IMGS);
-
-        return { mode: mode, pal: pal };
+        return { mode, pal };
       }
 
-      // ── Full re-sync from storage (called by events) ─────
+      // ── Full re-sync from storage ─────────────────────────────────
       function syncFromStorage() {
         const rawSettings = localStorage.getItem(KEY_SETTINGS);
         if (rawSettings) {
@@ -6062,7 +6105,6 @@
             const s = JSON.parse(rawSettings);
             const mode = (s.mode && (s.mode === 'dark' || s.mode === 'light')) ? s.mode : 'dark';
             const pal = (s.theme && PALETTES.includes(s.theme)) ? s.theme : 'amethyst';
-            // Apply without saving (avoids write loop)
             applyMode(mode, false);
             applyPalette(pal, false);
           } catch (e) { }
@@ -6070,7 +6112,7 @@
         applyImages();
       }
 
-      // ── Init ─────────────────────────────────────────────
+      // ── Init ──────────────────────────────────────────────────────
       (function () {
         const s = loadSettings();
         applyMode(s.mode, false);
@@ -6078,26 +6120,24 @@
         applyImages();
       })();
 
-      // ── Public API for UI controls (mode toggle, palette btns) ─
+      // ── Public API ────────────────────────────────────────────────
       window.toggleMode = function () {
         const cur = getMode();
         applyMode(cur === 'dark' ? 'light' : 'dark', true);
       };
-
       window.setPalette = function (pal, save) {
         applyPalette(pal, save !== false);
       };
 
-      // ── Cross-tab sync: storage event (different tabs) ───
+      // ── Cross-tab sync: storage event ────────────────────────────
       window.addEventListener('storage', function (e) {
         if (e.key === KEY_SETTINGS) syncFromStorage();
         if (e.key === KEY_IMGS) applyImages();
-        // Legacy key fallback (should not normally fire post-migration)
         if (e.key === _LEGACY_MODE || e.key === _LEGACY_PAL) syncFromStorage();
         if (e.key === _LEGACY_IMGS) applyImages();
       });
 
-      // ── Cross-tab sync: BroadcastChannel (same + diff tabs) ─
+      // ── Cross-tab sync: BroadcastChannel ─────────────────────────
       if (_bc) {
         _bc.onmessage = function (e) {
           if (!e.data || !e.data.type) return;

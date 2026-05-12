@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel — B.Ramkumar Portfolio CMS</title>
+  <title>Admin Panel — B.Ramkumar Portfolio CMS v4</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
@@ -15,23 +15,25 @@
     *::after {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      box-sizing: border-box
     }
 
     :root {
       --bg: #030014;
       --bg2: #0a0520;
-      --surface: rgba(255, 255, 255, 0.04);
-      --surface-hov: rgba(255, 255, 255, 0.08);
-      --bdr: rgba(255, 255, 255, 0.08);
+      --surface: rgba(255, 255, 255, .04);
+      --surface-hov: rgba(255, 255, 255, .08);
+      --bdr: rgba(255, 255, 255, .08);
       --text: #e2e8f0;
-      --text-dim: rgba(226, 232, 240, 0.55);
+      --text-dim: rgba(226, 232, 240, .55);
       --accent: #7A3F91;
       --accent2: #C59DD9;
-      --inp-bg: rgba(255, 255, 255, 0.04);
-      --inp-bdr: rgba(255, 255, 255, 0.12);
+      --accent-hover: #61307A;
+      --inp-bg: rgba(255, 255, 255, .04);
+      --inp-bdr: rgba(255, 255, 255, .12);
       --success: #22c55e;
       --warn: #f59e0b;
+      --danger: #ef4444;
       --radius: 16px;
       --token-shadow: rgba(122, 63, 145, .30);
     }
@@ -40,40 +42,37 @@
       --accent: #7A3F91;
       --accent2: #C59DD9;
       --accent-hover: #61307A;
-      --btn-text: #FFFFFF;
-      --token-shadow: rgba(122, 63, 145, .30);
+      --token-shadow: rgba(122, 63, 145, .30)
     }
 
     [data-palette="topaz"] {
       --accent: #C48A00;
       --accent2: #FFD77A;
       --accent-hover: #A67200;
-      --btn-text: #FFFFFF;
-      --token-shadow: rgba(196, 138, 0, .30);
+      --token-shadow: rgba(196, 138, 0, .30)
     }
 
     [data-palette="platinum"] {
       --accent: #2B2E33;
       --accent2: #7B7F85;
       --accent-hover: #1A1D22;
-      --btn-text: #FFFFFF;
-      --token-shadow: rgba(43, 46, 51, .22);
+      --token-shadow: rgba(43, 46, 51, .22)
     }
 
     [data-mode="light"] {
       --bg: #f0f0f5;
       --bg2: #e4e4ee;
-      --surface: rgba(255, 255, 255, 0.7);
-      --surface-hov: rgba(255, 255, 255, 0.9);
-      --bdr: rgba(0, 0, 0, 0.1);
+      --surface: rgba(255, 255, 255, .7);
+      --surface-hov: rgba(255, 255, 255, .9);
+      --bdr: rgba(0, 0, 0, .1);
       --text: #1a1a2e;
-      --text-dim: rgba(26, 26, 46, 0.55);
-      --inp-bg: rgba(0, 0, 0, 0.04);
-      --inp-bdr: rgba(0, 0, 0, 0.15);
+      --text-dim: rgba(26, 26, 46, .55);
+      --inp-bg: rgba(0, 0, 0, .04);
+      --inp-bdr: rgba(0, 0, 0, .15)
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: smooth
     }
 
     body {
@@ -81,27 +80,27 @@
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      transition: background 0.4s, color 0.4s;
+      transition: background .4s, color .4s
     }
 
-    /* ── LAYOUT ── */
+    /* LAYOUT */
     .admin-shell {
       display: grid;
       grid-template-columns: 260px 1fr;
-      min-height: 100vh;
+      min-height: 100vh
     }
 
-    @media (max-width: 860px) {
+    @media(max-width:860px) {
       .admin-shell {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr
       }
 
       .sidebar {
-        display: none;
+        display: none
       }
     }
 
-    /* ── SIDEBAR ── */
+    /* SIDEBAR */
     .sidebar {
       background: var(--bg2);
       border-right: 1px solid var(--bdr);
@@ -112,7 +111,7 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.8rem
     }
 
     .sb-logo {
@@ -121,81 +120,95 @@
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: -0.02em;
+      letter-spacing: -.02em
     }
 
     .sb-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.58rem;
+      font-size: .58rem;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: .2em;
       color: var(--text-dim);
-      margin-bottom: 0.6rem;
-      margin-top: 0.5rem;
+      margin-bottom: .6rem;
+      margin-top: .5rem
     }
 
     .sb-link {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 0.6rem 0.8rem;
+      padding: .6rem .8rem;
       border-radius: 10px;
       color: var(--text-dim);
       text-decoration: none;
-      font-size: 0.82rem;
+      font-size: .82rem;
       font-weight: 500;
-      transition: all 0.25s;
+      transition: all .25s;
       cursor: pointer;
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left
     }
 
     .sb-link:hover,
     .sb-link.active {
       background: var(--surface);
-      color: var(--text);
+      color: var(--text)
     }
 
     .sb-link i {
       width: 18px;
       text-align: center;
-      color: var(--accent);
+      color: var(--accent)
     }
 
     .sb-divider {
       height: 1px;
-      background: var(--bdr);
+      background: var(--bdr)
     }
 
     .sb-preview-btn {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 0.7rem 1rem;
+      padding: .7rem 1rem;
       border-radius: 12px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: #fff;
-      font-size: 0.78rem;
+      font-size: .78rem;
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
       justify-content: center;
-      transition: all 0.3s;
-      border: none;
+      transition: all .3s;
+      border: none
     }
 
     .sb-preview-btn:hover {
-      opacity: 0.85;
-      transform: translateY(-2px);
+      opacity: .85;
+      transform: translateY(-2px)
     }
 
-    /* ── MAIN ── */
+    .sb-version {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      color: var(--text-dim);
+      text-align: center;
+      padding: .5rem 0;
+      border-top: 1px solid var(--bdr);
+      margin-top: auto
+    }
+
+    /* MAIN */
     .main-content {
       padding: 2.5rem 3rem;
-      max-width: 1100px;
+      max-width: 1100px
     }
 
-    @media (max-width: 860px) {
+    @media(max-width:860px) {
       .main-content {
-        padding: 1.5rem;
+        padding: 1.5rem
       }
     }
 
@@ -205,98 +218,90 @@
       justify-content: space-between;
       margin-bottom: 2.5rem;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1rem
     }
 
     .page-title {
       font-size: clamp(1.4rem, 3vw, 2rem);
       font-weight: 800;
-      letter-spacing: -0.02em;
+      letter-spacing: -.02em
     }
 
     .page-sub {
       color: var(--text-dim);
-      font-size: 0.82rem;
-      margin-top: 4px;
+      font-size: .82rem;
+      margin-top: 4px
     }
 
-    /* ── CARDS ── */
+    /* CARDS */
     .card {
       background: var(--surface);
       border: 1px solid var(--bdr);
       border-radius: var(--radius);
       padding: 1.8rem;
-      transition: all 0.3s;
+      transition: all .3s
     }
 
     .card:hover {
-      border-color: var(--accent);
+      border-color: var(--accent)
     }
 
     .card-title {
-      font-size: 0.95rem;
+      font-size: .95rem;
       font-weight: 700;
       margin-bottom: 1.2rem;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 10px
     }
 
     .card-title i {
-      color: var(--accent);
+      color: var(--accent)
     }
 
-    /* ── SECTIONS LAYOUT ── */
-    .sections-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    /* ── MODE SELECTOR ── */
+    /* MODE TABS */
     .mode-tabs {
       display: flex;
-      gap: 0.5rem;
+      gap: .5rem;
       padding: 5px;
       background: var(--inp-bg);
       border-radius: 12px;
       width: fit-content;
-      border: 1px solid var(--bdr);
+      border: 1px solid var(--bdr)
     }
 
     .mode-tab {
-      padding: 0.55rem 1.4rem;
+      padding: .55rem 1.4rem;
       border-radius: 9px;
-      font-size: 0.82rem;
+      font-size: .82rem;
       font-weight: 600;
       cursor: pointer;
       border: none;
       background: transparent;
       color: var(--text-dim);
-      transition: all 0.25s;
+      transition: all .25s;
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 7px
     }
 
     .mode-tab.active {
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: #fff;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .2)
     }
 
     .mode-tab:not(.active):hover {
       background: var(--surface-hov);
-      color: var(--text);
+      color: var(--text)
     }
 
-    /* ── PALETTE SELECTOR ── */
+    /* PALETTE SELECTOR */
     .pal-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
-      margin-top: 0.8rem;
+      gap: .75rem;
+      margin-top: .8rem
     }
 
     .pal-card {
@@ -304,64 +309,64 @@
       border-radius: 14px;
       border: 2px solid var(--bdr);
       cursor: pointer;
-      transition: all 0.3s;
-      text-align: center;
+      transition: all .3s;
+      text-align: center
     }
 
     .pal-card:hover {
       border-color: var(--accent);
-      transform: translateY(-3px);
+      transform: translateY(-3px)
     }
 
     .pal-card.active {
       border-color: var(--accent);
       background: var(--surface-hov);
-      box-shadow: 0 0 0 3px var(--token-shadow, rgba(0, 0, 0, .08));
+      box-shadow: 0 0 0 3px var(--token-shadow)
     }
 
     .pal-swatch {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      margin: 0 auto 0.7rem;
-      border: 2px solid rgba(0, 0, 0, 0.1);
+      margin: 0 auto .7rem;
+      border: 2px solid rgba(0, 0, 0, .1)
     }
 
     .pal-card-name {
-      font-size: 0.72rem;
+      font-size: .72rem;
       font-weight: 700;
-      color: var(--text);
+      color: var(--text)
     }
 
     .pal-card-sub {
-      font-size: 0.62rem;
+      font-size: .62rem;
       color: var(--text-dim);
       margin-top: 2px;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'JetBrains Mono', monospace
     }
 
-    /* ── CONTEXT BANNER ── */
+    /* CONTEXT BANNER */
     .context-banner {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 0.9rem 1.4rem;
+      padding: .9rem 1.4rem;
       border-radius: 12px;
       margin-bottom: 1.8rem;
       border: 1px solid var(--bdr);
       background: var(--surface);
-      animation: bannerIn 0.3s ease;
+      animation: bannerIn .3s ease
     }
 
     @keyframes bannerIn {
       from {
         opacity: 0;
-        transform: translateY(-6px);
+        transform: translateY(-6px)
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0)
       }
     }
 
@@ -373,72 +378,82 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
+      font-size: .9rem;
       color: #fff;
-      flex-shrink: 0;
+      flex-shrink: 0
     }
 
     .ctx-label {
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-size: .75rem;
+      font-weight: 700
     }
 
     .ctx-sub {
-      font-size: 0.68rem;
+      font-size: .68rem;
       color: var(--text-dim);
       margin-top: 2px;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'JetBrains Mono', monospace
     }
 
-    /* ── UPLOAD GRID ── */
+    /* UPLOAD GRID */
     .upload-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.2rem;
+      gap: 1.2rem
     }
 
-    /* ── UPLOAD SLOT ── */
     .upload-slot {
       display: flex;
-      flex-direction: column;
+      flex-direction: column
     }
 
     .slot-label {
-      font-size: 0.66rem;
+      font-size: .66rem;
       color: var(--text-dim);
       margin-bottom: 6px;
       font-family: 'JetBrains Mono', monospace;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: .1em
     }
 
     .slot-sub {
-      font-size: 0.58rem;
+      font-size: .58rem;
       color: var(--accent);
       display: block;
-      margin-top: 1px;
+      margin-top: 1px
     }
 
-    /* ── IMG UPLOAD ── */
+    /* UPLOAD ZONE */
     .upload-zone {
       border: 2px dashed var(--inp-bdr);
       border-radius: 12px;
       padding: 1.2rem 1rem;
       text-align: center;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all .3s;
       position: relative;
       overflow: hidden;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center
     }
 
     .upload-zone:hover {
       border-color: var(--accent);
-      background: var(--surface-hov);
+      background: var(--surface-hov)
     }
 
     .upload-zone.has-img {
       border-style: solid;
-      border-color: var(--success);
+      border-color: var(--success)
+    }
+
+    .upload-zone.drag-over {
+      border-color: var(--accent2);
+      background: rgba(122, 63, 145, .08);
+      transform: scale(1.01)
     }
 
     .upload-zone input[type="file"] {
@@ -448,6 +463,7 @@
       cursor: pointer;
       width: 100%;
       height: 100%;
+      z-index: 5
     }
 
     .uz-preview {
@@ -456,30 +472,34 @@
       object-fit: cover;
       border-radius: 8px;
       display: none;
-      margin-bottom: 8px;
+      margin-bottom: 8px
     }
 
     .uz-preview.show {
-      display: block;
+      display: block
     }
 
     .uz-icon {
       font-size: 1.6rem;
       color: var(--text-dim);
-      margin-bottom: 6px;
+      margin-bottom: 6px
     }
 
     .uz-label {
-      font-size: 0.72rem;
-      color: var(--text-dim);
+      font-size: .72rem;
+      color: var(--text-dim)
     }
 
     .uz-name {
-      font-size: 0.7rem;
+      font-size: .7rem;
       font-weight: 600;
       color: var(--accent);
       margin-top: 4px;
       font-family: 'JetBrains Mono', monospace;
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
     }
 
     .uz-clear {
@@ -488,7 +508,7 @@
       right: 8px;
       width: 22px;
       height: 22px;
-      background: rgba(239, 68, 68, 0.8);
+      background: rgba(239, 68, 68, .8);
       border: none;
       border-radius: 50%;
       color: #fff;
@@ -496,48 +516,182 @@
       display: none;
       align-items: center;
       justify-content: center;
-      font-size: 0.6rem;
+      font-size: .6rem;
       z-index: 10;
-      transition: background 0.2s;
+      transition: background .2s
     }
 
     .uz-clear:hover {
-      background: #ef4444;
+      background: #ef4444
     }
 
     .upload-zone.has-img .uz-clear {
-      display: flex;
+      display: flex
     }
 
     .upload-zone.has-img .uz-icon,
     .upload-zone.has-img .uz-label {
-      display: none;
+      display: none
     }
 
-    /* ── SECTION ANCHOR ── */
+    .uz-size {
+      font-size: .58rem;
+      color: var(--text-dim);
+      margin-top: 2px;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    /* THEME OVERVIEW GRID — new feature for req 11-15 */
+    .theme-overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem
+    }
+
+    .theme-col {
+      border: 1px solid var(--bdr);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface)
+    }
+
+    .theme-col-head {
+      padding: 1rem 1.2rem;
+      background: var(--surface-hov);
+      border-bottom: 1px solid var(--bdr);
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .theme-col-swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      flex-shrink: 0
+    }
+
+    .theme-col-name {
+      font-size: .78rem;
+      font-weight: 700
+    }
+
+    .theme-col-sub {
+      font-size: .62rem;
+      color: var(--text-dim);
+      margin-top: 1px;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .theme-col-slots {
+      padding: 1rem
+    }
+
+    .theme-mini-slot {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--bdr)
+    }
+
+    .theme-mini-slot:last-child {
+      border-bottom: none
+    }
+
+    .tms-thumb {
+      width: 40px;
+      height: 32px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: var(--inp-bg);
+      border: 1px solid var(--bdr);
+      flex-shrink: 0;
+      cursor: pointer
+    }
+
+    .tms-thumb.has-img {
+      border-color: var(--success)
+    }
+
+    .tms-info {
+      flex: 1;
+      min-width: 0
+    }
+
+    .tms-name {
+      font-size: .68rem;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .tms-status {
+      font-size: .6rem;
+      color: var(--text-dim);
+      margin-top: 1px;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .tms-status.ok {
+      color: var(--success)
+    }
+
+    .tms-action {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0
+    }
+
+    .tms-btn {
+      width: 24px;
+      height: 24px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .62rem;
+      transition: all .2s;
+      background: var(--inp-bg);
+      color: var(--text-dim)
+    }
+
+    .tms-btn:hover {
+      background: var(--accent);
+      color: #fff
+    }
+
+    .tms-btn.danger:hover {
+      background: var(--danger)
+    }
+
+    /* SECTION ANCHOR */
     .section-anchor {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
+      font-size: .58rem;
+      letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--text-dim);
-      margin-bottom: 0.8rem;
-      display: block;
+      margin-bottom: .8rem;
+      display: block
     }
 
-    /* ── SLOT SECTION HEADING ── */
     .slot-section-head {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
+      font-size: .62rem;
+      letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--text-dim);
-      padding: 0.4rem 0;
+      padding: .4rem 0;
       margin-bottom: 1rem;
       border-bottom: 1px solid var(--bdr);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 8px
     }
 
     .slot-section-head::before {
@@ -546,10 +700,10 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      background: linear-gradient(135deg, var(--accent), var(--accent2))
     }
 
-    /* ── TOAST ── */
+    /* TOAST */
     #toast {
       position: fixed;
       bottom: 2rem;
@@ -557,131 +711,125 @@
       transform: translateX(-50%) translateY(80px);
       background: var(--success);
       color: #fff;
-      padding: 0.7rem 1.8rem;
+      padding: .7rem 1.8rem;
       border-radius: 50px;
-      font-size: 0.82rem;
+      font-size: .82rem;
       font-weight: 600;
       opacity: 0;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all .4s cubic-bezier(.16, 1, .3, 1);
       z-index: 9999;
       white-space: nowrap;
-      pointer-events: none;
+      pointer-events: none
     }
 
     #toast.show {
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      transform: translateX(-50%) translateY(0)
     }
 
-    /* ── STATUS BAR ── */
+    /* STATUS BAR */
     .status-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.8rem 1.5rem;
+      padding: .8rem 1.5rem;
       background: var(--surface);
       border: 1px solid var(--bdr);
       border-radius: 14px;
       margin-bottom: 2rem;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: .5rem
     }
 
     .status-item {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.78rem;
+      font-size: .78rem
     }
 
     .status-dot {
       width: 7px;
       height: 7px;
-      border-radius: 50%;
+      border-radius: 50%
     }
 
     .status-dot.green {
       background: var(--success);
-      box-shadow: 0 0 8px var(--success);
+      box-shadow: 0 0 8px var(--success)
     }
 
     .status-dot.yellow {
       background: var(--warn);
-      box-shadow: 0 0 8px var(--warn);
+      box-shadow: 0 0 8px var(--warn)
     }
 
-    /* ── BADGE ── */
-    .badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+    .status-dot.red {
+      background: var(--danger);
+      box-shadow: 0 0 8px var(--danger)
     }
 
-    .badge-dark {
-      background: rgba(0, 0, 0, 0.3);
-      color: #a0aec0;
+    .status-dot.pulse {
+      animation: dotPulse 1.5s ease infinite
     }
 
-    .badge-light {
-      background: rgba(255, 255, 255, 0.2);
-      color: #fff;
+    @keyframes dotPulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .3
+      }
     }
 
-    /* ── SAVE BUTTON ── */
+    /* SAVE/RESET BUTTONS */
     .save-btn {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 0.7rem 1.6rem;
+      padding: .7rem 1.6rem;
       border-radius: 12px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: #fff;
-      font-size: 0.82rem;
+      font-size: .82rem;
       font-weight: 700;
       cursor: pointer;
       border: none;
-      transition: all 0.3s;
-      box-shadow: 0 4px 18px var(--token-shadow, rgba(0, 0, 0, .18));
+      transition: all .3s;
+      box-shadow: 0 4px 18px var(--token-shadow, rgba(0, 0, 0, .18))
     }
 
     .save-btn:hover {
-      opacity: 0.88;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      opacity: .88;
+      transform: translateY(-2px)
     }
 
-    .save-btn:active {
-      transform: translateY(0);
-    }
-
-    /* ── RESET BTN ── */
     .reset-btn {
       display: flex;
       align-items: center;
       gap: 7px;
-      padding: 0.6rem 1.2rem;
+      padding: .6rem 1.2rem;
       border-radius: 10px;
       background: transparent;
       color: var(--text-dim);
-      font-size: 0.78rem;
+      font-size: .78rem;
       font-weight: 600;
       border: 1px solid var(--bdr);
       cursor: pointer;
-      transition: all 0.25s;
+      transition: all .25s
     }
 
     .reset-btn:hover {
       border-color: #ef4444;
-      color: #ef4444;
+      color: #ef4444
     }
 
-    /* ── PALETTE HIDDEN when dark ── */
+    /* PALETTE HIDDEN */
     .palette-section {
-      transition: opacity 0.4s, transform 0.4s;
+      transition: opacity .4s, transform .4s, height .4s
     }
 
     .palette-section.hidden {
@@ -691,31 +839,129 @@
       height: 0;
       overflow: hidden;
       margin: 0;
-      padding: 0;
+      padding: 0
     }
 
-    /* ── Divider ── */
     .divider {
       height: 1px;
       background: var(--bdr);
-      margin: 2rem 0;
+      margin: 2rem 0
     }
 
-    /* ── Render slot fade-in ── */
+    /* SLOT RENDER */
     .slot-render-target {
-      animation: slotIn 0.3s ease;
+      animation: slotIn .3s ease
     }
 
     @keyframes slotIn {
       from {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(8px)
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0)
       }
+    }
+
+    /* SYNC INDICATOR */
+    .sync-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: .62rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(34, 197, 94, .12);
+      color: var(--success);
+      border: 1px solid rgba(34, 197, 94, .25);
+      transition: all .3s
+    }
+
+    .sync-badge.syncing {
+      background: rgba(245, 158, 11, .12);
+      color: var(--warn);
+      border-color: rgba(245, 158, 11, .25)
+    }
+
+    .sync-badge i {
+      font-size: .55rem
+    }
+
+    /* TABS FOR OVERVIEW/UPLOAD */
+    .view-tabs {
+      display: flex;
+      gap: .4rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--bdr);
+      padding-bottom: .8rem
+    }
+
+    .view-tab {
+      padding: .45rem 1.1rem;
+      border-radius: 8px;
+      font-size: .75rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--text-dim);
+      transition: all .2s
+    }
+
+    .view-tab.active {
+      background: var(--surface-hov);
+      color: var(--text);
+      border: 1px solid var(--bdr)
+    }
+
+    .view-tab:hover:not(.active) {
+      color: var(--text)
+    }
+
+    .view-panel {
+      display: none
+    }
+
+    .view-panel.active {
+      display: block
+    }
+
+    /* FALLBACK BADGE */
+    .fallback-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: .58rem;
+      font-weight: 700;
+      background: rgba(245, 158, 11, .12);
+      color: var(--warn);
+      border: 1px solid rgba(245, 158, 11, .22);
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .cross-theme-info {
+      padding: .8rem 1rem;
+      border-radius: 10px;
+      background: var(--inp-bg);
+      border: 1px solid var(--inp-bdr);
+      font-size: .75rem;
+      color: var(--text-dim);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px
+    }
+
+    .cross-theme-info i {
+      color: var(--accent);
+      margin-top: 1px;
+      flex-shrink: 0
     }
   </style>
 </head>
@@ -727,27 +973,36 @@
     <aside class="sidebar">
       <div>
         <div class="sb-logo">Portfolio CMS</div>
-        <div style="font-size:0.68rem; color:var(--text-dim); margin-top:4px; font-family:'JetBrains Mono',monospace;">
-          Admin Panel v2.0</div>
+        <div style="font-size:.68rem;color:var(--text-dim);margin-top:4px;font-family:'JetBrains Mono',monospace;">Admin
+          Panel v4.0 — Full Sync</div>
+      </div>
+      <div id="syncStatus">
+        <span class="sync-badge" id="syncBadge"><i class="fas fa-circle"></i> LIVE SYNC READY</span>
       </div>
       <div>
         <div class="sb-label">Navigation</div>
-        <a class="sb-link active" href="#mode-section"><i class="fas fa-adjust"></i> Mode & Theme</a>
-        <a class="sb-link" href="#images-section"><i class="fas fa-image"></i> Images</a>
-        <a class="sb-link" href="#preview-section"><i class="fas fa-eye"></i> State Preview</a>
+        <button class="sb-link active" onclick="scrollTo('mode-section',this)"><i class="fas fa-adjust"></i> Mode &
+          Theme</button>
+        <button class="sb-link" onclick="scrollTo('images-section',this)"><i class="fas fa-image"></i> Upload
+          Images</button>
+        <button class="sb-link" onclick="scrollTo('overview-section',this)"><i class="fas fa-th-large"></i> Theme
+          Overview</button>
+        <button class="sb-link" onclick="scrollTo('preview-section',this)"><i class="fas fa-eye"></i> State
+          Preview</button>
       </div>
       <div class="sb-divider"></div>
       <div>
         <div class="sb-label">Actions</div>
-        <a class="sb-link" onclick="saveAll()"><i class="fas fa-save"></i> Save All Changes</a>
-        <a class="sb-link" onclick="resetAll()"><i class="fas fa-trash-alt" style="color:#ef4444"></i> Reset
-          Everything</a>
+        <button class="sb-link" onclick="saveAll()"><i class="fas fa-save"></i> Save All Changes</button>
+        <button class="sb-link" onclick="copyStateToClipboard()"><i class="fas fa-copy"></i> Copy State JSON</button>
+        <button class="sb-link" onclick="resetAll()"><i class="fas fa-trash-alt" style="color:#ef4444"></i> Reset
+          Everything</button>
       </div>
-      <div style="margin-top:auto;">
-        <a href="index.html" target="_blank" class="sb-preview-btn">
-          <i class="fas fa-external-link-alt"></i> Open Portfolio
-        </a>
+      <div style="margin-top:auto">
+        <a href="index.html" target="_blank" class="sb-preview-btn"><i class="fas fa-external-link-alt"></i> Open
+          Portfolio</a>
       </div>
+      <div class="sb-version">CMS ENGINE v4 · REAL-TIME SYNC</div>
     </aside>
 
     <!-- MAIN -->
@@ -757,32 +1012,36 @@
       <div class="page-header">
         <div>
           <h1 class="page-title">Admin Panel</h1>
-          <p class="page-sub">Mode-isolated CMS — only active context uploads are visible.</p>
+          <p class="page-sub">Theme-isolated CMS — each theme has its own image assets. Changes sync in real-time.</p>
         </div>
-        <button class="save-btn" onclick="saveAll()">
-          <i class="fas fa-save"></i> Save & Apply
-        </button>
+        <button class="save-btn" onclick="saveAll()"><i class="fas fa-save"></i> Save & Sync</button>
       </div>
 
       <!-- Status Bar -->
       <div class="status-bar">
         <div class="status-item">
-          <div class="status-dot green" id="storageIndicator"></div>
-          <span id="storageStatus" style="color:var(--text-dim);">Checking storage…</span>
+          <div class="status-dot green pulse" id="storageIndicator"></div>
+          <span id="storageStatus" style="color:var(--text-dim)">Checking storage…</span>
         </div>
         <div class="status-item">
-          <span style="color:var(--text-dim);font-size:0.72rem;">Active Context:</span>
-          <strong id="currentContextLabel" style="font-size:0.78rem;">—</strong>
+          <span style="color:var(--text-dim);font-size:.72rem">Active Context:</span>
+          <strong id="currentContextLabel" style="font-size:.78rem">—</strong>
+        </div>
+        <div class="status-item">
+          <span style="color:var(--text-dim);font-size:.72rem">Last Sync:</span>
+          <span id="lastSyncTime"
+            style="font-size:.72rem;font-family:'JetBrains Mono',monospace;color:var(--success)">—</span>
         </div>
       </div>
 
       <!-- ─── STEP 1: MODE ─────────────────────────────────── -->
       <section id="mode-section">
         <span class="section-anchor">// Step 1 — Select Mode</span>
-        <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card" style="margin-bottom:1.5rem">
           <div class="card-title"><i class="fas fa-adjust"></i> Display Mode</div>
-          <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:1.2rem;">
-            Selecting a mode instantly switches the upload panel below to show only that mode's slots.
+          <p style="font-size:.8rem;color:var(--text-dim);margin-bottom:1.2rem">
+            Selecting a mode switches the upload panel to that mode's image slots. Each mode stores images
+            independently.
           </p>
           <div class="mode-tabs">
             <button class="mode-tab" id="tab-dark" onclick="selectMode('dark')">
@@ -795,24 +1054,25 @@
         </div>
 
         <!-- Palette (Light only) -->
-        <div class="card palette-section hidden" id="paletteSection" style="margin-bottom:1.5rem;">
+        <div class="card palette-section hidden" id="paletteSection" style="margin-bottom:1.5rem">
           <div class="card-title"><i class="fas fa-palette"></i> Light Mode Palette</div>
-          <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:0.5rem;">
-            Selecting a palette loads only that palette's upload slots below. Uploads are fully isolated per palette.
+          <p style="font-size:.8rem;color:var(--text-dim);margin-bottom:.5rem">
+            Each palette stores its own set of images. Switching theme in the frontend automatically loads the correct
+            images.
           </p>
           <div class="pal-grid">
             <div class="pal-card" data-pal="amethyst" onclick="selectPalette('amethyst')">
-              <div class="pal-swatch" style="background:linear-gradient(135deg,#C59DD9,#7A3F91);"></div>
+              <div class="pal-swatch" style="background:linear-gradient(135deg,#C59DD9,#7A3F91)"></div>
               <div class="pal-card-name">Royal Amethyst</div>
               <div class="pal-card-sub">#7A3F91 · #C59DD9</div>
             </div>
             <div class="pal-card" data-pal="topaz" onclick="selectPalette('topaz')">
-              <div class="pal-swatch" style="background:linear-gradient(135deg,#FFD77A,#E6A520);"></div>
+              <div class="pal-swatch" style="background:linear-gradient(135deg,#FFD77A,#E6A520)"></div>
               <div class="pal-card-name">Imperial Topaz</div>
               <div class="pal-card-sub">#E6A520 · #FFD77A</div>
             </div>
             <div class="pal-card" data-pal="platinum" onclick="selectPalette('platinum')">
-              <div class="pal-swatch" style="background:linear-gradient(135deg,#C1C4C8,#7B7F85);"></div>
+              <div class="pal-swatch" style="background:linear-gradient(135deg,#C1C4C8,#7B7F85)"></div>
               <div class="pal-card-name">Platinum Mist</div>
               <div class="pal-card-sub">#7B7F85 · #C1C4C8</div>
             </div>
@@ -822,54 +1082,83 @@
 
       <div class="divider"></div>
 
-      <!-- ─── STEP 2: IMAGES — DYNAMIC RENDER TARGET ────────── -->
+      <!-- ─── STEP 2: UPLOAD IMAGES ────────────────────── -->
       <section id="images-section">
         <span class="section-anchor">// Step 2 — Upload Images</span>
 
-        <!-- Context banner — updates dynamically -->
         <div class="context-banner" id="contextBanner">
           <div class="ctx-icon" id="ctxIcon"><i class="fas fa-moon"></i></div>
           <div>
             <div class="ctx-label" id="ctxLabel">Dark Mode</div>
             <div class="ctx-sub" id="ctxSub">Uploading to: dark namespace</div>
           </div>
+          <div style="margin-left:auto;font-size:.68rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace">
+            Max 3 MB · JPG/PNG/WebP
+          </div>
         </div>
 
-        <!-- THE SINGLE RENDER TARGET — only active slots live here -->
+        <!-- THE SINGLE RENDER TARGET -->
         <div id="slotRenderTarget" class="slot-render-target"></div>
       </section>
 
       <div class="divider"></div>
 
-      <!-- ─── STEP 3: APPLY ──────────────────────────────────── -->
+      <!-- ─── STEP 3: THEME OVERVIEW ─── REQ 11-15 ─────── -->
+      <section id="overview-section">
+        <span class="section-anchor">// Step 3 — Theme Image Overview (All Themes)</span>
+        <div class="card" style="margin-bottom:1.5rem">
+          <div class="card-title"><i class="fas fa-layer-group"></i> Theme-Wise Image Map</div>
+          <div class="cross-theme-info">
+            <i class="fas fa-info-circle"></i>
+            <span>Each theme stores its own hero, about, and project images. When you switch themes in the portfolio,
+              the correct images load automatically. If an image is missing in a theme, it shows a fallback.</span>
+          </div>
+
+          <div class="view-tabs">
+            <button class="view-tab active" onclick="switchOverviewTab('dark',this)"><i class="fas fa-moon"
+                style="margin-right:4px"></i> Dark Mode</button>
+            <button class="view-tab" onclick="switchOverviewTab('amethyst',this)"><i class="fas fa-gem"
+                style="margin-right:4px;color:#7A3F91"></i> Amethyst</button>
+            <button class="view-tab" onclick="switchOverviewTab('topaz',this)"><i class="fas fa-sun"
+                style="margin-right:4px;color:#C48A00"></i> Topaz</button>
+            <button class="view-tab" onclick="switchOverviewTab('platinum',this)"><i class="fas fa-circle"
+                style="margin-right:4px;color:#7B7F85"></i> Platinum</button>
+          </div>
+
+          <div id="overviewRenderTarget"></div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- ─── STEP 4: APPLY ──────────────────────────────── -->
       <section id="preview-section">
-        <span class="section-anchor">// Step 3 — Apply</span>
+        <span class="section-anchor">// Step 4 — Apply & Preview</span>
         <div class="card">
           <div class="card-title"><i class="fas fa-eye"></i> Preview & Apply</div>
-          <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:1.5rem;">
-            Once satisfied, save all changes. The portfolio reflects your settings on next load.
+          <p style="font-size:.8rem;color:var(--text-dim);margin-bottom:1.5rem">
+            All changes auto-save on upload. Click "Save & Sync" to broadcast to all open portfolio tabs instantly.
           </p>
-          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-            <button class="save-btn" onclick="saveAll()">
-              <i class="fas fa-save"></i> Save All Changes
-            </button>
-            <a href="index.html" target="_blank" style="text-decoration:none;">
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+            <button class="save-btn" onclick="saveAll()"><i class="fas fa-save"></i> Save & Sync</button>
+            <a href="index.html" target="_blank" style="text-decoration:none">
               <button class="save-btn"
-                style="background:var(--surface-hov);color:var(--text);box-shadow:none;border:1px solid var(--bdr);">
+                style="background:var(--surface-hov);color:var(--text);box-shadow:none;border:1px solid var(--bdr)">
                 <i class="fas fa-external-link-alt"></i> Open Portfolio
               </button>
             </a>
-            <button class="reset-btn" onclick="resetAll()">
-              <i class="fas fa-undo"></i> Reset All
-            </button>
+            <button class="reset-btn" onclick="resetAll()"><i class="fas fa-undo"></i> Reset All</button>
           </div>
           <div
-            style="margin-top:1.5rem;padding:1rem;background:var(--inp-bg);border-radius:10px;border:1px solid var(--inp-bdr);">
+            style="margin-top:1.5rem;padding:1rem;background:var(--inp-bg);border-radius:10px;border:1px solid var(--inp-bdr)">
             <div
-              style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-dim);margin-bottom:0.5rem;">
-              CURRENT localStorage STATE</div>
+              style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--text-dim);margin-bottom:.5rem;display:flex;align-items:center;justify-content:space-between">
+              <span>CURRENT localStorage STATE</span>
+              <button onclick="copyStateToClipboard()"
+                style="border:none;background:var(--surface-hov);color:var(--accent);padding:2px 8px;border-radius:5px;font-size:.6rem;cursor:pointer;font-family:'JetBrains Mono',monospace">COPY</button>
+            </div>
             <pre id="statePreview"
-              style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim);overflow-x:auto;white-space:pre-wrap;word-break:break-all;"></pre>
+              style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--text-dim);overflow-x:auto;white-space:pre-wrap;word-break:break-all;max-height:200px;overflow-y:auto"></pre>
           </div>
         </div>
       </section>
@@ -877,15 +1166,19 @@
     </main>
   </div>
 
+  <!-- Hidden file input for overview quick-upload -->
+  <input type="file" id="overviewFileInput" accept="image/*" style="display:none" onchange="handleOverviewUpload(this)">
+
   <div id="toast"></div>
 
   <script>
-    // ═══════════════════════════════════════════════════════════
-    //  PORTFOLIO CMS — ISOLATED MODE RENDER ENGINE v3
-    //  Single render target. Zero cross-mode DOM pollution.
-    //  State: { mode, palette, images }
-    //  Render: renderSlots() destroys & rebuilds only active slots.
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
+    //  PORTFOLIO CMS — FULL THEME-ISOLATED RENDER ENGINE v4
+    //  Requirements: 1-15 fully implemented
+    //  State keys: portfolioSettings + portfolioImages
+    //  Sync: localStorage events + BroadcastChannel
+    //  Theme-wise: dark / light[amethyst|topaz|platinum] × 8 slots
+    // ═══════════════════════════════════════════════════════════════════════
 
     const KEY_SETTINGS = 'portfolioSettings';
     const KEY_IMGS = 'portfolioImages';
@@ -893,43 +1186,30 @@
     const _LEGACY_PAL = 'portfolio_palette';
     const _LEGACY_IMGS = 'portfolio_images';
 
-    // ══════════════════════════════════════════════════════════
-    //  SLOT MAP — admin key → index.html DOM target
-    //  hero   → #hero                (background-image, cover)
-    //  about  → #img-slot-about      (background-image, av-box)
-    //  proj1  → #img-slot-proj1      (<img> src overlay)
-    //  proj2  → #img-slot-proj2      (<img> src overlay)
-    //  proj3  → #img-slot-proj3      (<img> src overlay)
-    //  proj4  → #img-slot-proj4      (<img> src overlay)
-    //  proj5  → #img-slot-proj5      (<img> src overlay)
-    //  proj6  → #img-slot-proj6      (<img> src overlay)
-    //  Sync:  localStorage portfolioImages + BroadcastChannel
-    // ══════════════════════════════════════════════════════════
-
-    // ── Slot definitions ────────────────────────────────────────
+    // ── Slot definitions ────────────────────────────────────────────────
     const BASE_SLOTS = [
-      { key: 'hero', label: 'Hero Background', icon: 'fa-cloud-upload-alt', hint: '→ #hero (background-image, full-bleed)' },
-      { key: 'about', label: 'About — 3D Card Visual', icon: 'fa-user-astronaut', hint: '→ #img-slot-about .av-box (background-image)' },
+      { key: 'hero', label: 'Hero Background', icon: 'fa-cloud-upload-alt', hint: '→ #hero (full-bleed background)' },
+      { key: 'about', label: 'About — 3D Card', icon: 'fa-user-astronaut', hint: '→ #img-slot-about .av-box' },
     ];
-
     const PROJECT_NAMES = ['WanderHolidays', 'Piqwell', 'KaarmaAutospot', 'HYR', 'AI Interview Assistant', 'Snow AI'];
     const PROJECT_CATS = ['Travel Platform', 'Productivity App', 'E-Commerce', 'Care Portal', 'AI Tool', 'ML Research App'];
     const PROJ_SLOTS = [1, 2, 3, 4, 5, 6].map(i => ({
-      key: `proj${i}`,
-      label: PROJECT_NAMES[i - 1],
-      cat: PROJECT_CATS[i - 1],
-      hint: `→ #img-slot-proj${i} (<img> overlay)`,
-      idx: i
+      key: `proj${i}`, label: PROJECT_NAMES[i - 1], cat: PROJECT_CATS[i - 1],
+      hint: `→ #img-slot-proj${i} (<img> overlay)`, idx: i
     }));
+    const ALL_SLOT_DEFS = [...BASE_SLOTS, ...PROJ_SLOTS];
+    const ALL_SLOT_KEYS = ALL_SLOT_DEFS.map(s => s.key);
 
     const PALETTES = ['amethyst', 'topaz', 'platinum'];
     const PAL_NAMES = { amethyst: 'Royal Amethyst', topaz: 'Imperial Topaz', platinum: 'Platinum Mist' };
     const PAL_ICONS = { amethyst: 'fa-gem', topaz: 'fa-sun', platinum: 'fa-circle' };
+    const PAL_COLORS = {
+      amethyst: { a: '#7A3F91', b: '#C59DD9' },
+      topaz: { a: '#C48A00', b: '#FFD77A' },
+      platinum: { a: '#2B2E33', b: '#7B7F85' }
+    };
 
-    // ── All slot keys (for image store init) ────────────────────
-    const ALL_SLOT_KEYS = [...BASE_SLOTS.map(s => s.key), ...PROJ_SLOTS.map(s => s.key)];
-
-    // ── Canonical empty image store ──────────────────────────────
+    // ── Empty image store factory ────────────────────────────────────────
     function emptyImageStore() {
       const dark = {};
       ALL_SLOT_KEYS.forEach(k => { dark[k] = ''; });
@@ -941,13 +1221,17 @@
       return { dark, light };
     }
 
-    // ── Application state ────────────────────────────────────────
+    // ── Application state ────────────────────────────────────────────────
     let state = { mode: 'dark', palette: 'amethyst', images: emptyImageStore() };
 
-    // ── Deep clone ───────────────────────────────────────────────
+    // ── Overview tab state ───────────────────────────────────────────────
+    let _overviewContext = 'dark'; // 'dark' | 'amethyst' | 'topaz' | 'platinum'
+    let _pendingOverviewSlot = null; // { mode, palette, slot } for overview quick-upload
+
+    // ── Deep clone ───────────────────────────────────────────────────────
     function deepClone(o) { return JSON.parse(JSON.stringify(o)); }
 
-    // ── Merge saved → canonical ──────────────────────────────────
+    // ── Merge saved → canonical (safe partial merge) ─────────────────────
     function mergeSaved(canonical, saved) {
       if (!saved || typeof saved !== 'object') return;
       if (saved.dark && typeof saved.dark === 'object') {
@@ -966,14 +1250,14 @@
       }
     }
 
-    // ── BroadcastChannel ─────────────────────────────────────────
+    // ── BroadcastChannel — instant cross-tab sync ────────────────────────
     let _bc = null;
     try { _bc = new BroadcastChannel('portfolio_cms_sync'); } catch (e) { }
     function broadcastChange(type) {
       if (_bc) try { _bc.postMessage({ type }); } catch (e) { }
     }
 
-    // ── Persist ──────────────────────────────────────────────────
+    // ── Persist functions ────────────────────────────────────────────────
     function persistSettings() {
       try {
         localStorage.setItem(KEY_SETTINGS, JSON.stringify({ mode: state.mode, theme: state.palette }));
@@ -986,19 +1270,20 @@
         broadcastChange('images');
         checkStorage();
         updateStatePreview();
+        updateLastSync();
       } catch (e) {
-        showToast('⚠️ Storage full — remove some images.', '#f59e0b');
+        showToast('⚠️ Storage full — remove some images first', '#f59e0b');
       }
     }
     function persistAll() { persistSettings(); persistImages(); }
 
-    // ── Apply HTML theme attrs to admin panel itself ──────────────
+    // ── Apply admin theme attrs ──────────────────────────────────────────
     function applyAdminTheme() {
       document.documentElement.setAttribute('data-mode', state.mode);
       document.documentElement.setAttribute('data-palette', state.palette);
     }
 
-    // ── Load from localStorage ───────────────────────────────────
+    // ── Load from localStorage (with legacy migration) ───────────────────
     function loadFromStorage() {
       const rawSettings = localStorage.getItem(KEY_SETTINGS);
       if (rawSettings) {
@@ -1016,14 +1301,15 @@
       let rawImgs = localStorage.getItem(KEY_IMGS) || localStorage.getItem(_LEGACY_IMGS);
       if (rawImgs) {
         try { mergeSaved(state.images, JSON.parse(rawImgs)); }
-        catch (e) { console.warn('CMS: corrupted image store, using defaults.'); }
+        catch (e) { console.warn('CMS: corrupted image store, using defaults'); }
       }
+      // Clean up legacy keys
       localStorage.removeItem(_LEGACY_MODE);
       localStorage.removeItem(_LEGACY_PAL);
       localStorage.removeItem(_LEGACY_IMGS);
     }
 
-    // ── Image accessors ──────────────────────────────────────────
+    // ── Image accessors ──────────────────────────────────────────────────
     function getImage(mode, palette, slot) {
       if (mode === 'dark') return state.images.dark[slot] || '';
       return (state.images.light[palette] && state.images.light[palette][slot]) || '';
@@ -1038,61 +1324,94 @@
       persistImages();
     }
 
-    // ═══════════════════════════════════════════════════════════
-    //  SLOT DOM BUILDER — creates ONE upload zone element
-    // ═══════════════════════════════════════════════════════════
+    // ── Image fallback logic (req 13, 15) ────────────────────────────────
+    // Gets image with cross-theme fallback for overview display only
+    function getImageWithFallback(mode, palette, slot) {
+      const direct = getImage(mode, palette, slot);
+      if (direct) return { url: direct, fallback: false };
+      // For light palettes, try other palettes as fallback
+      if (mode === 'light') {
+        for (const pal of PALETTES) {
+          if (pal === palette) continue;
+          const fb = getImage('light', pal, slot);
+          if (fb) return { url: fb, fallback: true, source: pal };
+        }
+        // Last resort: try dark
+        const dk = getImage('dark', null, slot);
+        if (dk) return { url: dk, fallback: true, source: 'dark' };
+      }
+      return { url: '', fallback: false };
+    }
+
+    // ── Count filled slots for a given context ───────────────────────────
+    function countFilledSlots(mode, palette) {
+      return ALL_SLOT_KEYS.filter(k => getImage(mode, palette, k) !== '').length;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    //  SLOT DOM BUILDER
+    // ═══════════════════════════════════════════════════════════════════════
     function buildUploadZone(mode, palette, slotKey) {
-      const zoneId = `zone-${mode}-${palette || 'dark'}-${slotKey}`;
-      const prevId = `prev-${mode}-${palette || 'dark'}-${slotKey}`;
-      const nameId = `name-${mode}-${palette || 'dark'}-${slotKey}`;
+      const nsKey = mode === 'dark' ? 'dark' : palette;
+      const zoneId = `zone-${nsKey}-${slotKey}`;
+      const prevId = `prev-${nsKey}-${slotKey}`;
+      const nameId = `name-${nsKey}-${slotKey}`;
 
       const zone = document.createElement('div');
       zone.className = 'upload-zone';
       zone.id = zoneId;
-      zone.innerHTML = `
-        <input type="file" accept="image/*"
-          onchange="handleUpload(this,'${mode}','${palette}','${slotKey}')">
-        <button class="uz-clear"
-          onclick="clearSlot(event,'${mode}','${palette}','${slotKey}')">
-          <i class="fas fa-times"></i>
-        </button>
-        <img class="uz-preview" id="${prevId}" alt="">
-        <div class="uz-icon"><i class="fas fa-image"></i></div>
-        <div class="uz-label">Click to upload</div>
-        <div class="uz-name" id="${nameId}"></div>
-      `;
 
-      // Restore saved preview immediately
+      // Drag-and-drop
+      zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+      zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+      zone.addEventListener('drop', e => {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) processFile(file, mode, palette, slotKey, zoneId, prevId, nameId);
+      });
+
+      zone.innerHTML = `
+    <input type="file" accept="image/*"
+      onchange="handleUpload(this,'${mode}','${palette}','${slotKey}','${zoneId}','${prevId}','${nameId}')">
+    <button class="uz-clear" onclick="clearSlot(event,'${mode}','${palette}','${slotKey}','${zoneId}','${prevId}','${nameId}')">
+      <i class="fas fa-times"></i>
+    </button>
+    <img class="uz-preview" id="${prevId}" alt="">
+    <div class="uz-icon"><i class="fas fa-image"></i></div>
+    <div class="uz-label">Click or drag to upload</div>
+    <div class="uz-name" id="${nameId}"></div>
+  `;
+
+      // Restore saved preview
       const url = getImage(mode, palette, slotKey);
       if (url) {
         zone.classList.add('has-img');
         const img = zone.querySelector('.uz-preview');
         if (img) { img.src = url; img.classList.add('show'); }
         const nm = zone.querySelector('.uz-name');
-        if (nm) nm.textContent = 'Image loaded';
+        if (nm) nm.textContent = 'Image loaded ✓';
       }
-
       return zone;
     }
 
-    // ═══════════════════════════════════════════════════════════
-    //  SLOT WRAPPER — label + zone
-    // ═══════════════════════════════════════════════════════════
     function buildSlotWrapper(mode, palette, slotDef) {
       const wrap = document.createElement('div');
       wrap.className = 'upload-slot';
-
       const labelEl = document.createElement('div');
       labelEl.className = 'slot-label';
       if (slotDef.idx) {
-        labelEl.innerHTML = `PROJ ${String(slotDef.idx).padStart(2, '0')} — ${slotDef.label}<span class="slot-sub">${slotDef.cat}</span>`;
+        labelEl.innerHTML = `PROJ ${String(slotDef.idx).padStart(2, '0')} — ${slotDef.label}`;
+        const sub1 = document.createElement('span');
+        sub1.className = 'slot-sub';
+        sub1.textContent = slotDef.cat;
+        labelEl.appendChild(sub1);
         if (slotDef.hint) {
-          const domRef = document.createElement('span');
-          domRef.className = 'slot-sub';
-          domRef.style.color = 'var(--text-dim)';
-          domRef.style.opacity = '0.7';
-          domRef.textContent = slotDef.hint;
-          labelEl.appendChild(domRef);
+          const sub2 = document.createElement('span');
+          sub2.className = 'slot-sub';
+          sub2.style.opacity = '0.7';
+          sub2.textContent = slotDef.hint;
+          labelEl.appendChild(sub2);
         }
       } else {
         labelEl.textContent = slotDef.label;
@@ -1102,61 +1421,275 @@
           labelEl.appendChild(sub);
         }
       }
-
       wrap.appendChild(labelEl);
       wrap.appendChild(buildUploadZone(mode, palette, slotDef.key));
       return wrap;
     }
 
-    // ═══════════════════════════════════════════════════════════
-    //  RENDER ENGINE — destroys old, builds only active context
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
+    //  RENDER ENGINE
+    // ═══════════════════════════════════════════════════════════════════════
     function renderSlots() {
       const target = document.getElementById('slotRenderTarget');
-      // Wipe previous DOM entirely — no hidden leftovers
       target.innerHTML = '';
 
       const mode = state.mode;
       const palette = mode === 'light' ? state.palette : null;
 
-      // ── Build base slots section ───────────────────────────
+      // Base slots section
       const baseSection = document.createElement('div');
       baseSection.style.marginBottom = '2rem';
-
       const baseHead = document.createElement('div');
       baseHead.className = 'slot-section-head';
       baseHead.textContent = mode === 'dark' ? 'General Sections — Dark Mode' : `General Sections — ${PAL_NAMES[palette]}`;
       baseSection.appendChild(baseHead);
-
       const baseGrid = document.createElement('div');
       baseGrid.className = 'upload-grid';
-      BASE_SLOTS.forEach(slotDef => {
-        baseGrid.appendChild(buildSlotWrapper(mode, palette, slotDef));
-      });
+      BASE_SLOTS.forEach(s => baseGrid.appendChild(buildSlotWrapper(mode, palette, s)));
       baseSection.appendChild(baseGrid);
       target.appendChild(baseSection);
 
-      // ── Build project slots section ────────────────────────
+      // Project slots section
       const projSection = document.createElement('div');
       projSection.style.marginBottom = '2rem';
-
       const projHead = document.createElement('div');
       projHead.className = 'slot-section-head';
       projHead.textContent = mode === 'dark' ? 'Project Thumbnails — Dark Mode' : `Project Thumbnails — ${PAL_NAMES[palette]}`;
       projSection.appendChild(projHead);
-
       const projGrid = document.createElement('div');
       projGrid.className = 'upload-grid';
-      PROJ_SLOTS.forEach(slotDef => {
-        projGrid.appendChild(buildSlotWrapper(mode, palette, slotDef));
-      });
+      PROJ_SLOTS.forEach(s => projGrid.appendChild(buildSlotWrapper(mode, palette, s)));
       projSection.appendChild(projGrid);
       target.appendChild(projSection);
     }
 
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
+    //  THEME OVERVIEW RENDERER — REQ 11-15
+    // ═══════════════════════════════════════════════════════════════════════
+    function renderOverview(context) {
+      _overviewContext = context;
+      const target = document.getElementById('overviewRenderTarget');
+      target.innerHTML = '';
+
+      const mode = context === 'dark' ? 'dark' : 'light';
+      const palette = context === 'dark' ? null : context;
+
+      const ctxLabel = context === 'dark' ? 'Dark Mode' : `Light / ${PAL_NAMES[palette]}`;
+      const filled = countFilledSlots(mode, palette);
+      const total = ALL_SLOT_KEYS.length;
+
+      // Summary bar
+      const summary = document.createElement('div');
+      summary.style.cssText = 'display:flex;align-items:center;gap:10px;margin-bottom:1rem;font-size:.75rem;color:var(--text-dim)';
+      summary.innerHTML = `
+    <span style="font-family:'JetBrains Mono',monospace">${ctxLabel}</span>
+    <span>·</span>
+    <span style="color:${filled === total ? 'var(--success)' : 'var(--warn)'}">${filled}/${total} slots filled</span>
+    <span>·</span>
+    <span style="color:var(--text-dim)">Theme switching auto-loads correct images</span>
+  `;
+      target.appendChild(summary);
+
+      // Slot list
+      const list = document.createElement('div');
+      list.style.cssText = 'display:flex;flex-direction:column;gap:0';
+
+      ALL_SLOT_DEFS.forEach(slotDef => {
+        const { url, fallback, source } = getImageWithFallback(mode, palette, slotDef.key);
+        const row = document.createElement('div');
+        row.className = 'theme-mini-slot';
+
+        // Thumbnail
+        const thumb = document.createElement('img');
+        thumb.className = 'tms-thumb' + (url ? ' has-img' : '');
+        if (url) {
+          thumb.src = url;
+          thumb.title = 'Click to replace';
+          thumb.onclick = () => triggerOverviewUpload(mode, palette, slotDef.key);
+        } else {
+          thumb.src = '';
+          thumb.style.background = 'var(--inp-bg)';
+          thumb.title = 'No image — click to upload';
+          thumb.onclick = () => triggerOverviewUpload(mode, palette, slotDef.key);
+        }
+
+        // Info
+        const info = document.createElement('div');
+        info.className = 'tms-info';
+        let statusHTML;
+        if (url && fallback) {
+          statusHTML = `<span class="fallback-tag"><i class="fas fa-exclamation-triangle"></i> FALLBACK from ${source}</span>`;
+        } else if (url) {
+          statusHTML = `<span class="tms-status ok"><i class="fas fa-check-circle"></i> Image set</span>`;
+        } else {
+          statusHTML = `<span class="tms-status"><i class="fas fa-circle" style="font-size:.4rem"></i> No image (fallback active)</span>`;
+        }
+        info.innerHTML = `
+      <div class="tms-name">${slotDef.idx ? `Proj ${slotDef.idx} — ${slotDef.label}` : slotDef.label}</div>
+      <div style="margin-top:2px">${statusHTML}</div>
+    `;
+
+        // Actions
+        const actions = document.createElement('div');
+        actions.className = 'tms-action';
+        const uploadBtn = document.createElement('button');
+        uploadBtn.className = 'tms-btn';
+        uploadBtn.title = 'Upload image';
+        uploadBtn.innerHTML = '<i class="fas fa-upload"></i>';
+        uploadBtn.onclick = () => triggerOverviewUpload(mode, palette, slotDef.key);
+
+        if (url && !fallback) {
+          const clearBtn = document.createElement('button');
+          clearBtn.className = 'tms-btn danger';
+          clearBtn.title = 'Remove image';
+          clearBtn.innerHTML = '<i class="fas fa-times"></i>';
+          clearBtn.onclick = () => {
+            setImage(mode, palette, slotDef.key, '');
+            renderOverview(_overviewContext);
+            renderSlots();
+            showToast('🗑️ Image removed from ' + ctxLabel, '#7B7F85');
+          };
+          actions.appendChild(clearBtn);
+        }
+        actions.appendChild(uploadBtn);
+
+        row.appendChild(thumb);
+        row.appendChild(info);
+        row.appendChild(actions);
+        list.appendChild(row);
+      });
+
+      target.appendChild(list);
+    }
+
+    // ── Overview quick-upload ────────────────────────────────────────────
+    function triggerOverviewUpload(mode, palette, slot) {
+      _pendingOverviewSlot = { mode, palette, slot };
+      const inp = document.getElementById('overviewFileInput');
+      inp.value = '';
+      inp.click();
+    }
+
+    window.handleOverviewUpload = function (input) {
+      if (!_pendingOverviewSlot) return;
+      const file = input.files[0];
+      if (!file) { _pendingOverviewSlot = null; return; }
+      const { mode, palette, slot } = _pendingOverviewSlot;
+      processFile(file, mode, palette, slot, null, null, null, function () {
+        renderOverview(_overviewContext);
+        renderSlots();
+      });
+      _pendingOverviewSlot = null;
+    };
+
+    function switchOverviewTab(context, btn) {
+      document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      renderOverview(context);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    //  FILE PROCESSING ENGINE (shared, with compression)
+    // ═══════════════════════════════════════════════════════════════════════
+    function processFile(file, mode, palette, slot, zoneId, prevId, nameId, onDone) {
+      if (file.size > 3 * 1024 * 1024) {
+        showToast('⚠️ Image must be under 3 MB', '#f59e0b');
+        return;
+      }
+      if (!file.type.startsWith('image/')) {
+        showToast('⚠️ Please upload an image file', '#f59e0b');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const url = e.target.result;
+
+        // Compress if over 500KB
+        if (e.target.result.length > 500 * 1024) {
+          compressImage(url, function (compressed) {
+            finalizeUpload(compressed, mode, palette, slot, zoneId, prevId, nameId, file.name, onDone);
+          });
+        } else {
+          finalizeUpload(url, mode, palette, slot, zoneId, prevId, nameId, file.name, onDone);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function compressImage(dataUrl, callback) {
+      const img = new Image();
+      img.onload = function () {
+        const canvas = document.createElement('canvas');
+        const MAX = 1200;
+        let w = img.width, h = img.height;
+        if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+        if (h > MAX) { w = Math.round(w * MAX / h); h = MAX; }
+        canvas.width = w; canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
+        callback(canvas.toDataURL('image/jpeg', 0.82));
+      };
+      img.src = dataUrl;
+    }
+
+    function finalizeUpload(url, mode, palette, slot, zoneId, prevId, nameId, filename, onDone) {
+      setImage(mode, palette, slot, url);
+
+      if (zoneId) {
+        const zone = document.getElementById(zoneId);
+        const prev = document.getElementById(prevId);
+        const nameEl = document.getElementById(nameId);
+        if (zone && prev) {
+          prev.src = url; prev.classList.add('show');
+          zone.classList.add('has-img');
+          if (nameEl) nameEl.textContent = filename.length > 22 ? filename.slice(0, 19) + '...' : filename;
+        }
+      }
+
+      const modeLabel = mode === 'dark' ? 'Dark Mode' : `${PAL_NAMES[palette]}`;
+      showToast(`✅ Saved to ${modeLabel} · ${slot}`, '#22c55e');
+      setSyncBadge('syncing');
+      setTimeout(() => setSyncBadge('ready'), 1200);
+
+      if (typeof onDone === 'function') onDone();
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    //  UPLOAD HANDLER (called from zone input[onchange])
+    // ═══════════════════════════════════════════════════════════════════════
+    window.handleUpload = function (input, mode, palette, slot, zoneId, prevId, nameId) {
+      const file = input.files[0];
+      if (!file) return;
+      const resolvedPalette = mode === 'light' ? state.palette : null;
+      processFile(file, mode, resolvedPalette, slot, zoneId, prevId, nameId);
+    };
+
+    // ═══════════════════════════════════════════════════════════════════════
+    //  CLEAR SLOT
+    // ═══════════════════════════════════════════════════════════════════════
+    window.clearSlot = function (e, mode, palette, slot, zoneId, prevId, nameId) {
+      e.stopPropagation();
+      const resolvedPalette = mode === 'light' ? state.palette : null;
+      setImage(mode, resolvedPalette, slot, '');
+
+      const zone = document.getElementById(zoneId);
+      const prev = document.getElementById(prevId);
+      const nameEl = document.getElementById(nameId);
+      if (zone && prev) {
+        prev.src = ''; prev.classList.remove('show');
+        zone.classList.remove('has-img');
+        if (nameEl) nameEl.textContent = '';
+        const inp = zone.querySelector('input[type=file]');
+        if (inp) inp.value = '';
+      }
+      renderOverview(_overviewContext);
+      showToast('🗑️ Slot cleared', '#7B7F85');
+    };
+
+    // ═══════════════════════════════════════════════════════════════════════
     //  CONTEXT BANNER UPDATE
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     function updateContextBanner() {
       const icon = document.getElementById('ctxIcon');
       const label = document.getElementById('ctxLabel');
@@ -1168,46 +1701,32 @@
         sub.textContent = 'Uploading to: dark namespace';
       } else {
         const palName = PAL_NAMES[state.palette];
-        const palIcon = PAL_ICONS[state.palette];
-        icon.innerHTML = `<i class="fas ${palIcon}"></i>`;
+        icon.innerHTML = `<i class="fas ${PAL_ICONS[state.palette]}"></i>`;
         label.textContent = `Light Mode — ${palName}`;
         sub.textContent = `Uploading to: light › ${state.palette} namespace`;
       }
 
-      // Active context label in status bar
       const ctx = document.getElementById('currentContextLabel');
-      if (ctx) {
-        ctx.textContent = state.mode === 'dark'
-          ? 'Dark Mode'
-          : `Light / ${PAL_NAMES[state.palette]}`;
-      }
+      if (ctx) ctx.textContent = state.mode === 'dark' ? 'Dark Mode' : `Light / ${PAL_NAMES[state.palette]}`;
     }
 
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     //  FULL UI RENDER
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     function renderUI() {
-      // Mode tabs
       document.getElementById('tab-dark').classList.toggle('active', state.mode === 'dark');
       document.getElementById('tab-light').classList.toggle('active', state.mode === 'light');
-
-      // Palette section
-      const palSec = document.getElementById('paletteSection');
-      palSec.classList.toggle('hidden', state.mode === 'dark');
-
-      // Palette cards
-      document.querySelectorAll('.pal-card').forEach(c => {
-        c.classList.toggle('active', c.dataset.pal === state.palette);
-      });
-
+      document.getElementById('paletteSection').classList.toggle('hidden', state.mode === 'dark');
+      document.querySelectorAll('.pal-card').forEach(c => c.classList.toggle('active', c.dataset.pal === state.palette));
       updateContextBanner();
-      renderSlots();        // ← single dynamic render, no hidden zones
+      renderSlots();
+      renderOverview(_overviewContext);
       updateStatePreview();
     }
 
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     //  MODE / PALETTE SELECTORS
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     window.selectMode = function (mode) {
       state.mode = mode;
       persistSettings();
@@ -1223,103 +1742,34 @@
       renderUI();
     };
 
-    // ═══════════════════════════════════════════════════════════
-    //  UPLOAD HANDLER
-    // ═══════════════════════════════════════════════════════════
-    window.handleUpload = function (input, mode, palette, slot) {
-      const file = input.files[0];
-      if (!file) return;
-      if (file.size > 3 * 1024 * 1024) {
-        showToast('⚠️ Image must be under 3 MB', '#f59e0b');
-        input.value = ''; return;
-      }
-
-      const resolvedPalette = mode === 'light' ? state.palette : null;
-
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const url = e.target.result;
-        setImage(mode, resolvedPalette, slot, url);
-
-        // Update active zone DOM directly
-        const zoneId = `zone-${mode}-${resolvedPalette || 'dark'}-${slot}`;
-        const prevId = `prev-${mode}-${resolvedPalette || 'dark'}-${slot}`;
-        const nameId = `name-${mode}-${resolvedPalette || 'dark'}-${slot}`;
-        applySlotDOM(zoneId, prevId, nameId, url,
-          file.name.length > 22 ? file.name.slice(0, 19) + '...' : file.name);
-
-        showToast(
-          '✅ Saved — ' + (mode === 'dark' ? 'Dark Mode' : PAL_NAMES[resolvedPalette]),
-          '#22c55e'
-        );
-      };
-      reader.readAsDataURL(file);
-    };
-
-    // ═══════════════════════════════════════════════════════════
-    //  CLEAR SLOT
-    // ═══════════════════════════════════════════════════════════
-    window.clearSlot = function (e, mode, palette, slot) {
-      e.stopPropagation();
-      const resolvedPalette = mode === 'light' ? state.palette : null;
-      setImage(mode, resolvedPalette, slot, '');
-
-      const zoneId = `zone-${mode}-${resolvedPalette || 'dark'}-${slot}`;
-      const prevId = `prev-${mode}-${resolvedPalette || 'dark'}-${slot}`;
-      const nameId = `name-${mode}-${resolvedPalette || 'dark'}-${slot}`;
-      applySlotDOM(zoneId, prevId, nameId, '', '');
-      showToast('🗑️ Slot cleared', '#7B7F85');
-    };
-
-    // ═══════════════════════════════════════════════════════════
-    //  DOM SLOT APPLY
-    // ═══════════════════════════════════════════════════════════
-    function applySlotDOM(zoneId, prevId, nameId, url, filename) {
-      const zone = document.getElementById(zoneId);
-      const prev = document.getElementById(prevId);
-      const nameEl = document.getElementById(nameId);
-      if (!zone || !prev) return;
-
-      if (url) {
-        prev.src = url; prev.classList.add('show');
-        zone.classList.add('has-img');
-        if (nameEl) nameEl.textContent = filename || 'Image loaded';
-      } else {
-        prev.src = ''; prev.classList.remove('show');
-        zone.classList.remove('has-img');
-        if (nameEl) nameEl.textContent = '';
-        const inp = zone.querySelector('input[type=file]');
-        if (inp) inp.value = '';
-      }
-    }
-
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     //  SAVE ALL / RESET ALL
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     window.saveAll = function () {
       persistAll();
-      showToast('✅ All changes saved & applied!', '#22c55e');
+      setSyncBadge('syncing');
+      setTimeout(() => setSyncBadge('ready'), 1000);
+      showToast('✅ All changes saved & synced to portfolio!', '#22c55e');
     };
 
     window.resetAll = function () {
-      if (!confirm('Reset all settings and images? This cannot be undone.')) return;
+      if (!confirm('Reset ALL settings and images? This cannot be undone.')) return;
       localStorage.removeItem(KEY_SETTINGS);
       localStorage.removeItem(KEY_IMGS);
       localStorage.removeItem(_LEGACY_MODE);
       localStorage.removeItem(_LEGACY_PAL);
       localStorage.removeItem(_LEGACY_IMGS);
-
       state = { mode: 'dark', palette: 'amethyst', images: emptyImageStore() };
       broadcastChange('reset');
       applyAdminTheme();
       renderUI();
       checkStorage();
-      showToast('🔄 Reset complete.', '#7B7F85');
+      showToast('🔄 Reset complete — all data cleared', '#7B7F85');
     };
 
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     //  TOAST
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     function showToast(msg, bg) {
       const t = document.getElementById('toast');
       t.textContent = msg;
@@ -1329,24 +1779,42 @@
       t._tid = setTimeout(() => t.classList.remove('show'), 2800);
     }
 
-    // ═══════════════════════════════════════════════════════════
+    // ── Sync badge ───────────────────────────────────────────────────────
+    function setSyncBadge(status) {
+      const b = document.getElementById('syncBadge');
+      if (!b) return;
+      if (status === 'syncing') {
+        b.className = 'sync-badge syncing';
+        b.innerHTML = '<i class="fas fa-circle" style="animation:dotPulse 0.7s infinite"></i> SYNCING…';
+      } else {
+        b.className = 'sync-badge';
+        b.innerHTML = '<i class="fas fa-circle"></i> LIVE SYNC READY';
+      }
+    }
+
+    // ── Last sync time ───────────────────────────────────────────────────
+    function updateLastSync() {
+      const el = document.getElementById('lastSyncTime');
+      if (el) el.textContent = new Date().toLocaleTimeString();
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
     //  STORAGE STATUS
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     function checkStorage() {
       try {
         const used = new Blob(Object.values(localStorage)).size;
         const pct = ((used / (5 * 1024 * 1024)) * 100).toFixed(1);
         const kb = (used / 1024).toFixed(1);
-        document.getElementById('storageStatus').textContent =
-          `localStorage: ${kb} KB used (~${pct}% of 5 MB)`;
-        document.getElementById('storageIndicator').className =
-          'status-dot ' + (parseFloat(pct) > 70 ? 'yellow' : 'green');
+        document.getElementById('storageStatus').textContent = `localStorage: ${kb} KB used (~${pct}% of 5 MB)`;
+        const cls = parseFloat(pct) > 80 ? 'red' : parseFloat(pct) > 60 ? 'yellow' : 'green';
+        document.getElementById('storageIndicator').className = `status-dot ${cls} pulse`;
       } catch (e) { }
     }
 
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     //  STATE PREVIEW
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     function updateStatePreview() {
       function summarize(obj) {
         const out = {};
@@ -1369,9 +1837,31 @@
       if (el) el.textContent = JSON.stringify(preview, null, 2);
     }
 
-    // ═══════════════════════════════════════════════════════════
+    window.copyStateToClipboard = function () {
+      try {
+        const raw = {
+          settings: JSON.parse(localStorage.getItem(KEY_SETTINGS) || '{}'),
+          imageMap: updateStatePreview()
+        };
+        navigator.clipboard.writeText(document.getElementById('statePreview').textContent)
+          .then(() => showToast('📋 State copied to clipboard!', '#3b82f6'))
+          .catch(() => showToast('⚠️ Clipboard copy failed', '#f59e0b'));
+      } catch (e) { }
+    };
+
+    // ═══════════════════════════════════════════════════════════════════════
+    //  SCROLL HELPER
+    // ═══════════════════════════════════════════════════════════════════════
+    window.scrollTo = function (id, btn) {
+      document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    // ═══════════════════════════════════════════════════════════════════════
     //  INIT
-    // ═══════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════
     (function init() {
       loadFromStorage();
       applyAdminTheme();
